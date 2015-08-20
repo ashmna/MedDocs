@@ -1,0 +1,6 @@
+{
+  "name": "MedDocs",
+  "dependencies": {
+    "angular": "*"
+  }
+}

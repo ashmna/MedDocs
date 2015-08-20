@@ -1,0 +1,21 @@
+{
+  "name": "ashmna/MedDocs",
+  "description": "MedDocs Description",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "autoload": {
+    "psr-4": {"MD\\": "MD/"}
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/ashmna/A7"
+    }
+  ],
+  "require": {
+    "ashmna/a7" : "*",
+    "phpmailer/phpmailer": "v5.2.9",
+    "phpoffice/phpexcel": "1.8.1",
+    "dompdf/dompdf" : "0.6.*"
+  }
+}
