@@ -23,6 +23,7 @@ class App {
         E_USER_NOTICE,
     ];
     protected static $session;
+    protected static $page;
 
 
     protected $builder;
@@ -166,12 +167,18 @@ class App {
     }
 
     public static function getCurrentPage() {
-        $page = 'default';
-        if(isset($_GET['page'])) {
+        $page = 'index';
+        if(isset(self::$page)) {
+            $page = self::$page;
+        } elseif(isset($_GET['page'])) {
             $page = $_GET['page'];
         }
-        //check exist page
+        self::$page = $page;
         return $page;
+    }
+
+    public static function setCurrentPage($page) {
+        self::$page = $page;
     }
 
 
@@ -198,7 +205,6 @@ class App {
     }
 
     public static function getUserRole() {
-//        $role = -1;
 //        if(self::isLoggedUser()) {
 //            $affiliate = self::getCurrentUser();
 //            if(isset($affiliate) && isset($affiliate->role)) {
@@ -206,189 +212,12 @@ class App {
 //            }
 //        }
 //        return $role;
+        return Defines::ROLE_ADMIN;
     }
-
-
 
     public static function redirectHandler() {
-        $guestPages     = [
-            'index',
-            'aboutUs',
-            'getStarted',
-            'commissions',
-            'mobile',
-            'news',
-            'contactUs',
-            'faq',
-            'gift',
-            'termsCondition'
-        ];
-        $affiliatePages = [
-            'home',
-            'account',
-            'marketing',
-            'uploadBanner',
-            'linkCreator',
-            'xmlFeed',
-            'socialShare',
-            'banners',
-            'bannerBuilder',
-            'XMLfeed',
-            'JSONfeed',
-
-            'productStat',
-            'playerStat',
-
-            'withdrawals',
-            'depositCosts',
-
-            'playersReport',
-            'earnReport',
-            'mediaReport',
-            'productsReport',
-            'marketingForPassives',
-            'linkCreator',
-            'socialSher',
-            'subAffiliateStatistics',
-            'messages',
-            'wallet',
-            'support'
-        ];
-        $adminPages     = [
-            'admin',
-            'account',
-            'setGeneral',
-            'depositCosts',
-            'setGeneral'
-        ];
-        $riskPages     = [
-            'account',
-            'productStat',
-            'playerStat',
-            'subAffiliateStatistics',
-            'wallet',
-            'withdrawals'
-        ];
-        $otherPages =[
-            'newsletter',
-        ];
-
-        $redirectList = [];
-        $currentPage = self::getCurrentPage();
-        switch(true) {
-            case true:
-                $redirectList['default'] = '/page/admin/';
-                $accessPages = array_merge($guestPages, $affiliatePages, $adminPages, $otherPages);
-                if($currentPage == 'admin') {
-//                    $app = self::getInstance();
-//                    /** @var \MD\Services\UserService $userService */
-//                    $userService = $app->container->get('MD\Services\UserService');
-//                    $userService->backToMainRole();
-                }
-                break;
-//            case Affiliate::ROLE_RISK:
-//                $redirectList['default'] = '/page/account/';
-//                $accessPages = array_merge($guestPages, $riskPages);
-//                break;
-//            case Affiliate::ROLE_SUPER_MDILIATE:
-//                $redirectList['default'] = '/page/home/';
-//                $accessPages = array_merge($guestPages, $affiliatePages, $otherPages);
-//                break;
-//            case Affiliate::ROLE_MDILIATE:
-//                $redirectList['default'] = '/page/home/';
-//                $accessPages = array_merge($guestPages, $affiliatePages);
-//                break;
-            default:
-                $accessPages = $guestPages;
-                break;
-        }
-
-
-        $redirectPage = '';
-        if(!in_array($currentPage, $accessPages)) {
-            $redirectPage = 'index';
-        }
-
-        if(empty($redirectPage) && isset($redirectList[$currentPage])) {
-            $redirectPage = $redirectList[$currentPage];
-        } elseif($redirectList[$redirectPage]) {
-            $redirectPage = $redirectList[$redirectPage];
-        }
-
-        if(!empty($redirectPage)) {
-            if($redirectPage == 'index') $redirectPage = '/';
-            header('Location: '.$redirectPage); exit;
-        }
+        Template::file('redirect.php');
     }
-    public static function menuList() {
-        $guestMenu     = [
-            'index',
-            'aboutUs',
-            'getStarted',
-            'commissions',
-            'mobile',
-            'news',
-            'contactUs',
-            'faq',
-            'gift',
-            'termsCondition'
-        ];
-        $affiliateMenu = [
-            'messages',
-            'marketingTools',
-            'statistics',
-            'productStatistics',
-            'playerStatistics',
-            'payment',
-            'withdrawals',
-            'report',
-            'playersReport',
-            'mediaReport',
-            'earningReport',
-            'productsReport',
-            'wallet',
-        ];
-        $adminMenu     = [
-            'admin',
-            'depositCosts',
-        ];
-        $riskMenu     = [
-            'account',
-            'statistics',
-            'productStatistics',
-            'playerStatistics',
-            'subAffiliateStatistics',
-            'wallet',
-            'withdrawals',
-            'payment',
-        ];
-        $otherMenu =[
-            'home',
-        ];
-        $superAffiliateMenu=[
-            'subAffiliateStatistics',
-            'newsletter',
-        ];
-        switch(self::getUserRole()) {
-            case Affiliate::ROLE_ADMIN:
-                $accessPages = array_merge($guestMenu, $affiliateMenu, $adminMenu,$superAffiliateMenu);
-                break;
-            case Affiliate::ROLE_RISK:
-                $accessPages = array_merge($riskMenu,$otherMenu);
-                break;
-            case Affiliate::ROLE_SUPER_MDILIATE:
-                $accessPages = array_merge($affiliateMenu, $superAffiliateMenu,$otherMenu);
-                break;
-            case Affiliate::ROLE_MDILIATE:
-                $accessPages = array_merge($affiliateMenu,$otherMenu);
-                break;
-            default:
-                $accessPages = $guestMenu;
-                break;
-        }
-       return $accessPages;
-    }
-
 
 
     public static function getLocale() {

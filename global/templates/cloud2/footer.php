@@ -1,4 +1,4 @@
-
+<?php if(\MD\Helpers\App::isLoggedUser()) { ?>
 <!-- Dashboard Wrapper End -->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -32,6 +32,8 @@
 <script src="/global/js/custom.js"></script>
 <script src="/global/js/custom-index.js"></script>
 
+
+<?php } ?>
 
 </body>
 </html>

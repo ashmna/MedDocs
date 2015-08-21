@@ -1,4 +1,5 @@
 <?php
+use MD\Helpers\App;
 use MD\Helpers\Config;
 ?>
 <!DOCTYPE html>
@@ -7,6 +8,7 @@ use MD\Helpers\Config;
 	<title><?= Config::getInstance()->partnerName ?></title>
 
 	<link rel="icon" href="/img/favicon.ico">
+<?php if(App::isLoggedUser()) { ?>
 	<link rel="stylesheet" type="text/css" href="/style.css"/>
 
 	<?php if (Config::getInstance()->environment == 'development') { ?>
@@ -21,5 +23,15 @@ use MD\Helpers\Config;
 		<script src="/global/js/respond.min.js"></script>
 	<![endif]-->
 	<script src="/global/bower_components/angular/angular.js"></script>
+<?php } else { ?>
+	<!-- Error CSS -->
+	<link href="/global/css/login.css" rel="stylesheet" media="screen">
+
+	<!-- Animate CSS -->
+	<link href="/global/css/animate.css" rel="stylesheet" media="screen">
+
+	<!-- Font Awesome -->
+	<link href="/global/fonts/font-awesome.min.css" rel="stylesheet">
+<?php } ?>
 </head>
 <body>

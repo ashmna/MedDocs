@@ -54,14 +54,14 @@ class Template {
         self::file('pages'.DIRECTORY_SEPARATOR.$page.'.php');
     }
 
-    private static function file($file) {
+    public static function file($file) {
         $skinPath   = self::dir(true).$file;
         $globalPath = self::dir().$file;
 
         if(file_exists($skinPath)) {
-            include $skinPath;
+            return include $skinPath;
         } elseif(file_exists($globalPath)) {
-            include $globalPath;
+            return include $globalPath;
         } else {
             Notification::error(1, 'file "'.$file.'" Not found! ', 'Template');
         }
