@@ -15,6 +15,9 @@ abstract class Model {
                 $this->{$key} = $val;
             }
         }
+        if(property_exists($this, 'partnerId')) {
+            $this->partnerId = Config::getInstance()->partnerId;
+        }
     }
 
     public function toArray() {
