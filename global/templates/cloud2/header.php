@@ -3,7 +3,7 @@ use MD\Helpers\App;
 use MD\Helpers\Config;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
 	<title><?= Config::getInstance()->partnerName ?></title>
 
@@ -22,7 +22,6 @@ use MD\Helpers\Config;
 		<script src="/global/js/html5shiv.js"></script>
 		<script src="/global/js/respond.min.js"></script>
 	<![endif]-->
-	<script src="/global/bower_components/angular/angular.js"></script>
 <?php } else { ?>
 	<!-- Error CSS -->
 	<link href="/global/css/login.css" rel="stylesheet" media="screen">
@@ -33,5 +32,6 @@ use MD\Helpers\Config;
 	<!-- Font Awesome -->
 	<link href="/global/fonts/font-awesome.min.css" rel="stylesheet">
 <?php } ?>
+	<script src="/global/bower_components/angular/angular.js"></script>
 </head>
 <body>
