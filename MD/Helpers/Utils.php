@@ -182,7 +182,6 @@ class Utils {
         $config = Config::getInstance();
 
         $vars['partnerName']   = $config->partnerName;
-        $vars['partnerDomain'] = $config->partnerDomain;
 
         $msg = preg_replace_callback('#\{\}#', function($r){
             static $i = 0;
