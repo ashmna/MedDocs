@@ -75,7 +75,7 @@ class App {
         return $this->call($className, $methodName, $arguments);
     }
 
-    protected static function getClassNameAndMethodFromURI($apiPrefix = 'global/api/') {
+    protected static function getClassNameAndMethodFromURI($apiPrefix = 'api/') {
         $retData = [
             'className'  => '',
             'methodName' => '',

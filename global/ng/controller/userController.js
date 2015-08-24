@@ -1,6 +1,7 @@
+'use strict';
+
 app.controller('userController', ['$scope', 'userServices',
 function ($scope, userServices) {
-    'use strict';
 
     $scope.userLogin = {};
 
@@ -8,9 +9,13 @@ function ($scope, userServices) {
         if(form.$invalid) return;
 
         userServices.login($scope.userLogin)
-            .success(function(){
-                window.location.reload();
+            .success(function(data){
+                if(data.result) {
+                    window.location.reload();
+                } else {
+                    // TODO: ALERT
+                }
             });
-    }
+    };
 
 }]);

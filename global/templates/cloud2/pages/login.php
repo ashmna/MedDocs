@@ -1,4 +1,5 @@
-<form ng-controller="userController" id="wrapper" method="post" name="loginForm" ng-submit="login(loginForm)">
+<div ng-controller="userController">
+<form  id="wrapper" method="post" name="loginForm" ng-submit="login(loginForm)" novalidate>
   <div id="box" class="animated bounceIn">
     <div id="top_header">
       <a href="#">
@@ -31,3 +32,4 @@
     </div>
   </div>
 </form>
+</div>

@@ -1,46 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-	
-<!-- Mirrored from jesus.gallery/cloud2/default.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 20 Aug 2015 12:11:53 GMT -->
-<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>Cloud Admin Dashboard</title>
-		<meta name="description" content="Cloud Admin Panel" />
-		<meta name="keywords" content="Admin, Dashboard, Bootstrap3, Sass, transform, CSS3, HTML5, Web design, UI Design, Responsive Dashboard, Responsive Admin, Admin Theme, Best Admin UI, Bootstrap Theme, Bootstrap, Light weight Admin Dashboard,Light weight, Light weight Admin, Light weight Dashboard" />
-		<meta name="author" content="Bootstrap Gallery" />
-		<link rel="shortcut icon" href="img/favicon.html">
-		
-		<!-- Bootstrap CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-
-		<!-- Animate CSS -->
-		<link href="css/animate.css" rel="stylesheet" media="screen">
-
-		<!-- date range -->
-		<link rel="stylesheet" type="text/css" href="css/daterange.css">
-
-		<!-- Main CSS -->
-		<link href="css/main.css" rel="stylesheet" media="screen">
-
-		<!-- Slidebar CSS -->
-		<link rel="stylesheet" type="text/css" href="css/slidebars.css">
-
-		<!-- Font Awesome -->
-		<link href="fonts/font-awesome.min.css" rel="stylesheet">
-
-		<!-- Metrize Fonts -->
-		<link href="fonts/metrize.css" rel="stylesheet">
-
-		<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-			<script src="js/html5shiv.js"></script>
-			<script src="js/respond.min.js"></script>
-		<![endif]-->
-
-	</head>  
-
-	<body>
 
 		<!-- Left sidebar start -->
 		<aside id="sidebar">
@@ -518,27 +475,3 @@
 				Copyright Cloud Admin <span>2015</span>. All Rights Reserved.
 			</footer>
 			<!-- Footer end -->
-			
-		</div>
-		<!-- Dashboard Wrapper End -->
-
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="js/jquery.js"></script>
-
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="js/bootstrap.min.js"></script>
-
-		<!-- Animated Right Sidebar -->
-		<script src="js/slidebars.js"></script>
-
-		<!-- Date Range -->
-		<script src="js/daterange/moment.js"></script>
-		<script src="js/daterange/daterangepicker.js"></script>
-
-		<!-- Custom JS -->
-		<script src="js/custom.js"></script>
-
-	</body>
-
-<!-- Mirrored from jesus.gallery/cloud2/default.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 20 Aug 2015 12:11:53 GMT -->
-</html>

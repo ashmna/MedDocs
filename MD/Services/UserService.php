@@ -1,6 +1,6 @@
 <?php
 
-namespace AFF\Services;
+namespace MD\Services;
 
 
 interface UserService {

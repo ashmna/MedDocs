@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AFF\Models;
+namespace MD\Models;
 
 
 use MD\Helpers\Defines;

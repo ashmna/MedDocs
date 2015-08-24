@@ -9,6 +9,7 @@ use MD\Exceptions\ConfigurationException;
  * @package MD\Helpers
  *
  * @property bool $test
+ * @property array $db
  * @property array $definition
  * @property int $partnerId
  * @property string $partnerName
@@ -33,6 +34,7 @@ class Config {
     protected $useSession = true;
 
     protected $email;
+    protected $db = [];
     protected $definition = [];
     protected $partnerId;
     protected $timezone;
@@ -113,6 +115,9 @@ class Config {
 
     public function setUseSession($useSession) {
         $this->useSession = $useSession;
+    }
+    public function getDb() {
+        return $this->db;
     }
 
     public function getDefinition() {

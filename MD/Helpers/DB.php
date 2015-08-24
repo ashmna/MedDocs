@@ -15,17 +15,20 @@ class DB {
     public $stmt;
     /** @var array */
     protected $tableToFields = [];
-    /** @Inject("db.host") */
     protected $host;
-    /** @Inject("db.name") */
     protected $dbname;
-    /** @Inject("db.user") */
     protected $dbuser;
-    /** @Inject("db.pass") */
     protected $dbpass;
 
     public function __construct($host = null, $dbname = null, $dbuser = null, $dbpass = null) {
-        $this->host = $host;
+        $db = Config::getInstance()->db;
+        if(!isset($host)) {
+            $host   = $db['host'];
+            $dbname = $db['name'];
+            $dbuser = $db['user'];
+            $dbpass = $db['pass'];
+        }
+        $this->host   = $host;
         $this->dbname = $dbname;
         $this->dbuser = $dbuser;
         $this->dbpass = $dbpass;

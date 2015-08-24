@@ -1,10 +1,10 @@
 <?php
 
 
-namespace AFF\Services\Impl;
+namespace MD\Services\Impl;
 
 
-use AFF\Services\UserService;
+use MD\Services\UserService;
 use MD\Helpers\App;
 use MD\Helpers\Notification;
 

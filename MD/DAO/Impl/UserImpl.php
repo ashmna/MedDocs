@@ -4,9 +4,9 @@
 namespace MD\DAO\Impl;
 
 
-use AFF\Models\Client;
-use AFF\Models\Doctor;
-use AFF\Models\User;
+use MD\Models\Client;
+use MD\Models\Doctor;
+use MD\Models\User;
 use MD\Helpers\Config;
 use MD\Helpers\Defines;
 
