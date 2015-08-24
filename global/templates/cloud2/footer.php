@@ -1,4 +1,20 @@
-<?php if(\MD\Helpers\App::isLoggedUser()) { ?>
+<?php
+use \MD\Helpers\App;
+use MD\Helpers\Utils;
+if(App::isLoggedUser()) { ?>
+
+					</div>
+					<!-- Spacer ends -->
+
+				</div>
+				<!-- Container fluid ends -->
+
+			</div>
+			<!-- Main Container Start -->
+<footer>
+    <?= Utils::format(_('Copyright {partnerName}. All Rights Reserved.'))   ?>
+</footer>
+<!-- Footer end -->
 </div>
 <!-- Dashboard Wrapper End -->
 

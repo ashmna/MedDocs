@@ -13,7 +13,8 @@ namespace {
             case Defines::ROLE_CLIENT:
             default:
                 $menu = [
-                    'index'
+                    'index',
+                    'doctors'
                 ];
                 break;
         }
