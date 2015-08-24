@@ -39,4 +39,12 @@ class UserServiceImpl implements UserService {
         $session->isLogged = false;
     }
 
+    public function register(array $userData) {
+        $userId = $this->userDao->createUser($userData);
+        Notification::success(3, '');
+        //TODO: Armen Notification text for success register user
+        return $userId;
+    }
+
+
 }

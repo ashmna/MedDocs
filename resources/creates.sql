@@ -37,11 +37,21 @@ CREATE TABLE `users` (
   COLLATE utf8_unicode_ci;
 
 CREATE TABLE `doctors` (
-  `partnerId` INT(3)       NOT NULL DEFAULT 0,
-  `doctorId`  INT(11)      NOT NULL AUTO_INCREMENT
+  `partnerId`      INT(3)       NOT NULL DEFAULT 0,
+  `doctorId`       INT(11)      NOT NULL AUTO_INCREMENT
   COMMENT 'doctorId == userId',
-  `email`     VARCHAR(75)  NULL,
-  `phone`     VARCHAR(255) NULL,
+  `email`          VARCHAR(75)  NULL,
+  `phone`          VARCHAR(255) NULL,
+  `firstName`      VARCHAR(100) NULL,
+  `lastName`       VARCHAR(100) NULL,
+  `patronymicName` VARCHAR(100) NULL,
+  `gender`         ENUM('Male', 'Female')
+                   CHARACTER SET 'utf8'
+                   COLLATE 'utf8_unicode_ci'
+                                NOT NULL DEFAULT '',
+  `birthDay` DATE NULL,
+  `address` VARCHAR(255) NULL,
+  `zipCode` VARCHAR(10) NULL,
   PRIMARY KEY (`doctorId`),
   UNIQUE INDEX `doctorId_UNIQUE` (`doctorId` ASC),
   CONSTRAINT `fk_doctor_user`
@@ -68,3 +78,6 @@ CREATE TABLE `clients` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   COLLATE utf8_unicode_ci;
+
+
+INSERT INTO users VALUES (1, 1, 'admin', 'admin@meddocs.am', 'Admin', '', 'admin');
