@@ -1,4 +1,5 @@
 <?php if(\MD\Helpers\App::isLoggedUser()) { ?>
+</div>
 <!-- Dashboard Wrapper End -->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
