@@ -64,12 +64,7 @@
                                     <label class="col-sm-2 control-label"><?=_('Birthday')?></label>
 
                                     <div class="col-sm-10">
-                                        <fieldset class="birthday-picker" ng-model="registerInfo.firstName">
-                                            <select class='birth-year' name='birth[year]'></select>
-                                            <select class='birth-month' name='birth[month]'></select>
-                                            <select class='birth-day' name='birth[day]'></select>
-                                            <input type='hidden' name='birthdate' />
-                                        </fieldset>
+                                        <input class="datepicker form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">

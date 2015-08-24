@@ -44,6 +44,7 @@ if(App::isLoggedUser()) { ?>
 <!-- Date Range -->
 <script src="/global/js/daterange/moment.js"></script>
 <script src="/global/js/daterange/daterangepicker.js"></script>
+<script src="/global/js/datepicker/bootstrap-datepicker.js"></script>
 
 <!-- Custom JS -->
 <script src="/global/js/custom.js"></script>
@@ -61,7 +62,13 @@ if(App::isLoggedUser()) { ?>
 
 <!-- angular controllers -->
 <script src="/global/ng/controller/userController.js"></script>
-
+<script>
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        startDate: new Date('1945-01-01'),
+        startView: 2
+    })
+</script>
 
 </body>
 </html>

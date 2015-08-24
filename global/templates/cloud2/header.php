@@ -10,7 +10,7 @@ use MD\Helpers\Config;
 	<link rel="icon" href="/img/favicon.ico">
 <?php if(App::isLoggedUser()) { ?>
 	<link rel="stylesheet" type="text/css" href="/style.css"/>
-
+	<link rel="stylesheet" type="text/css" href="/global/css/datepicker/bootstrap-datepicker3.css">
 	<?php if (Config::getInstance()->environment == 'development') { ?>
 
 	<?php } else { ?>
