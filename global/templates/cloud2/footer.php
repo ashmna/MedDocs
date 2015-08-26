@@ -62,6 +62,10 @@ if(App::isLoggedUser()) { ?>
 
 <!-- angular controllers -->
 <script src="/global/ng/controller/userController.js"></script>
+<script src="/global/ng/controller/doctorController.js"></script>
+
+<!-- angular directives -->
+<script src="/global/ng/directive/perfectUploader.js"></script>
 
 </body>
 </html>
