@@ -1,5 +1,7 @@
 # CREATE SCHEMA `med_docs` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
 
+DROP TABLE IF EXISTS `workingTimes`;
+DROP TABLE IF EXISTS `orders`;
 
 DROP TABLE IF EXISTS `clients`;
 DROP TABLE IF EXISTS `doctors`;
@@ -48,10 +50,10 @@ CREATE TABLE `doctors` (
   `gender`         ENUM('Male', 'Female')
                    CHARACTER SET 'utf8'
                    COLLATE 'utf8_unicode_ci'
-                                NOT NULL ,
-  `birthDay` DATE NULL,
-  `address` VARCHAR(255) NULL,
-  `zipCode` VARCHAR(10) NULL,
+                                NOT NULL,
+  `birthDay`       DATE         NULL,
+  `address`        VARCHAR(255) NULL,
+  `zipCode`        VARCHAR(10)  NULL,
   PRIMARY KEY (`doctorId`),
   UNIQUE INDEX `doctorId_UNIQUE` (`doctorId` ASC),
   CONSTRAINT `fk_doctor_user`
@@ -84,18 +86,46 @@ INSERT INTO users VALUES (1, 1, 'admin', 'admin@meddocs.am', 'Admin', '', 'admin
 
 
 CREATE TABLE `workingTimes` (
-  `workingTimeId` INT(3)   NOT NULL AUTO_INCREMENT,
-  `doctorId`  INT(11)      NOT NULL DEFAULT 0,
-  `date` DATE NOT NULL,
-  `startTime`     TIME  NOT  NULL,
-  `endTime`     TIME  NOT  NULL,
-
+  `partnerId` INT(3)       NOT NULL DEFAULT 0,
+  `workingTimeId` INT(3)  NOT NULL AUTO_INCREMENT,
+  `doctorId`      INT(11) NOT NULL DEFAULT 0,
+  `date`          DATE    NOT NULL,
+  `startTime`     TIME    NOT NULL,
+  `endTime`       TIME    NOT NULL,
   PRIMARY KEY (`workingTimeId`),
   UNIQUE INDEX `doctorId_UNIQUE` (`doctorId` ASC),
   CONSTRAINT `fk_workingTime_doctor`
   FOREIGN KEY (`doctorId`)
-  REFERENCES `users` (`userId`)
+  REFERENCES `doctors` (`doctorId`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   COLLATE utf8_unicode_ci;
+
+
+CREATE TABLE `orders` (
+  `partnerId` INT(3)       NOT NULL DEFAULT 0,
+  `orderId`      INT(11) NOT NULL AUTO_INCREMENT,
+  `paretOrderId` INT(11) NOT NULL DEFAULT 0,
+  `clientId`     INT(11) NOT NULL,
+  `doctorId`     INT(11) NOT NULL,
+
+  PRIMARY KEY (`orderId`),
+  UNIQUE INDEX `orderId_UNIQUE` (`orderId` ASC),
+
+  CONSTRAINT `fk_order_client`
+  FOREIGN KEY (`clientId`)
+  REFERENCES `clients` (`clientId`),
+
+  CONSTRAINT `fk_order_doctor`
+  FOREIGN KEY (`doctorId`)
+  REFERENCES `doctors` (`doctorId`),
+
+  CONSTRAINT `fk_order_parentOrder`
+  FOREIGN KEY (`paretOrderId`)
+  REFERENCES `orders` (`orderId`)
+
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE utf8_unicode_ci
