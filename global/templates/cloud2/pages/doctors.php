@@ -11,11 +11,12 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4><?= _('Registrtation Form') ?></h4>
+                <h4><?= _('Doctor Details Form') ?></h4>
                 <ul class="links">
                     <li>
                         <a href="#">
-                            <i class="fa fa-list"></i>
+
+                            <i class="fa fa-plus-square-o"></i> Added new member
                         </a>
                     </li>
                 </ul>
