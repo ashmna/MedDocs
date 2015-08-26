@@ -24,17 +24,17 @@ if(App::isLoggedUser()) { ?>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/global/js/bootstrap.min.js"></script>
 
-<!-- Flot Charts -->
+<!-- Flot Charts
 <script src="/global/js/flot/jquery.flot.js"></script>
 <script src="/global/js/flot/jquery.flot.time.js"></script>
 <script src="/global/js/flot/jquery.flot.selection.js"></script>
 <script src="/global/js/flot/jquery.flot.resize.js"></script>
 <script src="/global/js/flot/jquery.flot.tooltip.js"></script>
 <script src="/global/js/flot/flot.excanvas.min.js"></script>
-
-<!-- Custom flot JS -->
+-->
+<!-- Custom flot JS
 <script src="/global/js/flot/custom/combine-chart.js"></script>
-
+-->
 <!-- Animated Right Sidebar -->
 <script src="/global/js/slidebars.js"></script>
 

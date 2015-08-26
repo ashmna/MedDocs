@@ -9,7 +9,7 @@ return [
 
     'definition' => [
         'partner.id'   => 1,
-        'partner.name' => '  ',
+        'partner.name' => 'MedDocs',
     ],
 
     'email'              => [

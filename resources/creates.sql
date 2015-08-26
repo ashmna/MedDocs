@@ -48,7 +48,7 @@ CREATE TABLE `doctors` (
   `gender`         ENUM('Male', 'Female')
                    CHARACTER SET 'utf8'
                    COLLATE 'utf8_unicode_ci'
-                                NOT NULL DEFAULT '',
+                                NOT NULL ,
   `birthDay` DATE NULL,
   `address` VARCHAR(255) NULL,
   `zipCode` VARCHAR(10) NULL,
@@ -81,3 +81,21 @@ CREATE TABLE `clients` (
 
 
 INSERT INTO users VALUES (1, 1, 'admin', 'admin@meddocs.am', 'Admin', '', 'admin');
+
+
+CREATE TABLE `workingTimes` (
+  `workingTimeId` INT(3)   NOT NULL AUTO_INCREMENT,
+  `doctorId`  INT(11)      NOT NULL DEFAULT 0,
+  `date` DATE NOT NULL,
+  `startTime`     TIME  NOT  NULL,
+  `endTime`     TIME  NOT  NULL,
+
+  PRIMARY KEY (`workingTimeId`),
+  UNIQUE INDEX `doctorId_UNIQUE` (`doctorId` ASC),
+  CONSTRAINT `fk_workingTime_doctor`
+  FOREIGN KEY (`doctorId`)
+  REFERENCES `users` (`userId`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE utf8_unicode_ci;
