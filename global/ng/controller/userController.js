@@ -28,4 +28,13 @@ function ($scope, userServices) {
             });
     };
 
+    $scope.initDatePicker = function(){
+        jQuery('.datepicker').datepicker({
+            format   : 'dd/mm/yyyy',
+            startDate: new Date('1945-01-01'),
+            autoclose: true,
+            startView: 2
+        })
+    };
+
 }]);

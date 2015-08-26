@@ -54,6 +54,7 @@ CREATE TABLE `doctors` (
   `birthDay`       DATE         NULL,
   `address`        VARCHAR(255) NULL,
   `zipCode`        VARCHAR(10)  NULL,
+  `specialization` INT(3)       NOT NULL DEFAULT 0,
   PRIMARY KEY (`doctorId`),
   UNIQUE INDEX `doctorId_UNIQUE` (`doctorId` ASC),
   CONSTRAINT `fk_doctor_user`

@@ -504,7 +504,7 @@
 					<!-- Spacer starts -->
 					<div class="spacer-xs">
 
-						<!-- Row start -->
+				<!-- Row start -->
 			      <div class="row no-gutter">
 			        <div class="col-md-12 col-sm-12 col-sx-12">
 			          <div class="panel panel-default">

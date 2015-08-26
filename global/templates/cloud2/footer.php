@@ -62,13 +62,6 @@ if(App::isLoggedUser()) { ?>
 
 <!-- angular controllers -->
 <script src="/global/ng/controller/userController.js"></script>
-<script>
-    $('.datepicker').datepicker({
-        format: 'dd/mm/yyyy',
-        startDate: new Date('1945-01-01'),
-        startView: 2
-    })
-</script>
 
 </body>
 </html>
