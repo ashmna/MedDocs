@@ -17,4 +17,11 @@ app.service('userServices', ['serverConnector', function(serverConnector) {
         });
     };
 
+    this.register = function(data) {
+        return serverConnector.send({
+            url   : url('register'),
+            data: data
+        });
+    }
+
 }]);
