@@ -65,7 +65,8 @@ if(App::isLoggedUser()) { ?>
 <script src="/global/ng/controller/doctorController.js"></script>
 
 <!-- angular directives -->
-<script src="/global/ng/directive/perfectUploader.js"></script>
+<script src="/global/ng/directives/perfectUploader.js"></script>
+<script src="/global/ng/directives/perfectDatepicker.js"></script>
 
 </body>
 </html>

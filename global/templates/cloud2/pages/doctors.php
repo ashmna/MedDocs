@@ -112,8 +112,14 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><?= _('Birthday') ?></label>
 
-                                    <div class="col-sm-10" ng-init="initDatePicker()">
-                                        <input class="datepicker form-control" ng-model="registerInfo.birthday">
+                                    <div class="col-sm-4">
+                                        <input class="datepicker form-control" ng-model="registerInfo.birthday" perfect-datepicker>
+                                    </div>
+                                    <div class="col-sm-3 registerAvatar" perfect-uploader-preview>
+                                        <input type="file" name="avatar" style="display: none;" ng-model="registerInfo.avatar">
+                                        <a hred="#" class="thumbnail img-responsive col-sm-12 right-align-text">
+                                            <img alt="avatar" src="../../../img/admin1.png">
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -146,14 +152,6 @@
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="<?= ('Zip code') ?>"
                                                ng-model="registerInfo.zipCode">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"><?= _('Photo') ?></label>
-
-                                    <div class="col-sm-10" perfect-uploader-preview>
-                                        <input type="file" name="avatar" style="display: none;" ng-model="registerInfo.avatar">
-                                        <a hred="#" class="thumbnail img-responsive col-sm-12 right-align-text"><img alt="avatar"></a>
                                     </div>
                                 </div>
                             </div>

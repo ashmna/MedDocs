@@ -1,5 +1,5 @@
 app.directive('perfectUploaderPreview', function () {
-        return function(scope,element,attributes){
+        return function(scope,element,attrs){
 
             //var inputName = attributes['perfectUploaderPreview'];
             //var input = angular.element('<input type="file" name="avatar" style="display: none">');
@@ -21,6 +21,10 @@ app.directive('perfectUploaderPreview', function () {
                     };
 
                     reader.readAsDataURL(input.files[0]);
+
+                    scope.$apply(function (scope) {
+                        $parse(attrs.ngModel).assign(scope, input.files[0]);
+                    });
                 }
             });
         }

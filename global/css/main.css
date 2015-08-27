@@ -2285,3 +2285,6 @@ input[type=radio], input[type=checkbox] {
 .form-horizontal .form-group.no-gutter {
   padding-right: 10px;
   padding-left: 10px; }
+
+.registerAvatar {
+    float: right;}
