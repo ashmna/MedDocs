@@ -2290,3 +2290,19 @@ input[type=radio], input[type=checkbox] {
   padding-left: 15px !important;
   padding-right: 15px !important;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.links span {
+    margin: 5px;
+}
+
+#doctorRegistrationForm {
+    display: none;
+}
+
+#clientRegistrationForm {
+    display: none;
+}

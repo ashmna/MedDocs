@@ -6,14 +6,14 @@
                 <div class="panel-heading">
                     <h4><?= _('Client Details Form') ?></h4>
                     <ul class="links">
-                        <li>
+                        <li onclick="$('#clientRegistrationForm').slideToggle()">
                             <a href="#">
-                                <i class="fa fa-plus-square-o"></i><?= _('Added new member') ?>
+                                <i class="fa fa-plus-square-o"></i><span><?= _('Add new member') ?></span>
                             </a>
                         </li>
                     </ul>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" id="clientRegistrationForm">
                     <form class="form-horizontal" role="form" ng-submit="register(form)">
                         <div class="row no-gutter">
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -21,28 +21,28 @@
                                     <label class="col-sm-2 control-label"><?=_('First Name') ?></label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="<?=_('First Name') ?>" ng-model="registerInfo.firstName">
+                                        <input type="text" class="form-control" placeholder="<?=_('First Name') ?>" ng-model="clientInfo.firstName">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><?=_('Last Name') ?></label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="<?=_('Last Name') ?>" ng-model="registerInfo.lastName">
+                                        <input type="text" class="form-control" placeholder="<?=_('Last Name') ?>" ng-model="clientInfo.lastName">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><?=_('Patronymic Name') ?></label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="<?=_('Patronymic Name') ?>" ng-model="registerInfo.patronymicName">
+                                        <input type="text" class="form-control" placeholder="<?=_('Patronymic Name') ?>" ng-model="clientInfo.patronymicName">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><?=_('Gender') ?></label>
 
                                     <div class="col-sm-10">
-                                        <select class="form-control" ng-model="registerInfo.gender">
+                                        <select class="form-control" ng-model="clientInfo.gender">
                                             <option value="Male"><?=_('Male') ?></option>
                                             <option value="Female"><?=_('Female') ?></option>
                                         </select>
@@ -53,29 +53,31 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><?=_('Birthday') ?></label>
 
-                                    <div class="col-sm-10" ng-init="initDatePicker()">
-                                        <input class="datepicker form-control">
+                                    <div class="col-sm-10">
+                                        <div class="input-group date" ng-model="clientInfo.birthday" perfect-datepicker>
+                                            <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><?= ('Email') ?></label>
 
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" placeholder="<?= ('Email') ?>" ng-model="registerInfo.email">
+                                        <input type="email" class="form-control" placeholder="<?= ('Email') ?>" ng-model="clientInfo.email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><?= ('Phone') ?></label>
 
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" placeholder="<?= ('Phone') ?>" ng-model="registerInfo.phone">
+                                        <input type="email" class="form-control" placeholder="<?= ('Phone') ?>" ng-model="clientInfo.phone">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><?= ('Address') ?></label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="<?= ('Address') ?>" ng-model="registerInfo.address">
+                                        <input type="text" class="form-control" placeholder="<?= ('Address') ?>" ng-model="clientInfo.address">
                                     </div>
                                 </div>
                             </div>

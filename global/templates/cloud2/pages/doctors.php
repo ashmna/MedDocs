@@ -6,14 +6,14 @@
                 <div class="panel-heading">
                     <h4><?= _('Doctor Details Form') ?></h4>
                     <ul class="links">
-                        <li>
+                        <li onclick="$('#doctorRegistrationForm').slideToggle()">
                             <a href="#">
-                                <i class="fa fa-plus-square-o"></i> Added new member
+                                <i class="fa fa-plus-square-o"></i><span><?= _('Add new member') ?></span>
                             </a>
                         </li>
                     </ul>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" id="doctorRegistrationForm">
                     <form class="form-horizontal" role="form" ng-submit="register(form)">
                         <div class="row no-gutter">
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -45,10 +45,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12" >
-                                        <div perfect-uploader-preview>
-                                            <input type="file" name="avatar" style="display: none;" ng-model="registerInfo.avatar">
-                                            <a href="#" class="thumbnail img-responsive col-sm-12 right-align-text">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div ng-model="registerInfo.avatar" perfect-uploader-preview show-upload-button class="cursor-pointer">
+                                            <input type="file" name="avatar" style="display: none;">
+                                            <a hred="#" class="thumbnail img-responsive col-sm-12 right-align-text">
                                                 <img alt="avatar" src="../../../img/admin1.png">
                                             </a>
                                         </div>
@@ -117,16 +117,10 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><?= _('Birthday') ?></label>
 
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-10">
                                         <div class="input-group date" ng-model="registerInfo.birthday" perfect-datepicker>
                                             <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-3 registerAvatar" ng-model="registerInfo.avatar" perfect-uploader-preview show-upload-button>
-                                        <input type="file" name="avatar" style="display: none;">
-                                        <a hred="#" class="thumbnail img-responsive col-sm-12 right-align-text">
-                                            <img alt="avatar" src="../../../img/admin1.png">
-                                        </a>
                                     </div>
                                 </div>
                                 <div class="form-group">
