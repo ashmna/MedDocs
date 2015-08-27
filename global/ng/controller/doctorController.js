@@ -3,7 +3,9 @@
 app.controller('doctorController', ['$scope', 'userServices',
     function ($scope, userServices) {
 
-        $scope.registerInfo = {};
+        $scope.registerInfo = {
+            role : 'Doctor'
+        };
 
         $scope.register = function () {
             userServices.register($scope.registerInfo)

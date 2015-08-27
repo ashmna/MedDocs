@@ -40,7 +40,6 @@ class UserServiceImpl implements UserService {
     }
 
     public function register(array $userData) {
-        var_dump($userData);die;
         $userId = $this->userDao->createUser($userData);
         Notification::success(3, '');
         //TODO: Armen Notification text for success register user

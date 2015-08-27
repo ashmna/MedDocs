@@ -34,7 +34,7 @@ class UserImpl implements \MD\DAO\User {
 
     public function createUser(array $userData) {
         $user = new User($userData);
-        $userId = $this->db->insert($user->toArray());
+        $userId = $this->db->insert('users', $user->toArray());
         switch($user->getRole()) {
             case Defines::ROLE_CLIENT;
                 $client = new Client($userData);

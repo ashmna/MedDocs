@@ -17,6 +17,14 @@ class User extends Model {
     protected $passHash;
     protected $pass;
 
+    public function __construct($data = []) {
+        parent::__construct($data);
+
+        if(empty($this->pass)) {
+            $this->setPass(self::generateRandomString(4));
+        }
+    }
+
     public function setUserId($userId) {
         $this->userId = $userId;
     }
@@ -46,9 +54,18 @@ class User extends Model {
     }
 
 
-
     protected static function genPassHash($pass) {
         return sha1($pass);
+    }
+
+    protected static function generateRandomString($length = 6) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
 }

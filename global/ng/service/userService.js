@@ -1,26 +1,29 @@
-app.service('userServices', ['serverConnector', function(serverConnector) {
+app.service('userServices', ['serverConnector', function (serverConnector) {
     'use strict';
-    function url(url) { return '/api/user/' + url + '/'; }
+
+    function url(url) {
+        return '/api/user/' + url + '/';
+    }
 
 
-    this.login = function(data) {
+    this.login = function (data) {
         return serverConnector.send({
             url : url('login'),
             data: data
         });
     };
 
-    this.logout = function(data) {
+    this.logout = function (data) {
         return serverConnector.send({
             method: 'GET',
             url   : url('logout')
         });
     };
 
-    this.register = function(data) {
+    this.register = function (data) {
         return serverConnector.send({
-            url   : url('register'),
-            data: data
+            url : url('register'),
+            data: {userData: data}
         });
     }
 
