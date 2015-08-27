@@ -1,10 +1,3 @@
-<span class="label label-default">label-default</span>
-<span class="label label-info">label-info</span>
-<span class="label label-danger">label-danger</span>
-<span class="label label-primary">label-primary</span>
-<span class="label label-success">label-success</span>
-<span class="label label-warning">label-warning</span>
-
 <div ng-controller="doctorController" ng-cloak>
     <!-- Row start -->
     <div class="row no-gutter">
@@ -24,31 +17,45 @@
                     <form class="form-horizontal" role="form" ng-submit="register(form)">
                         <div class="row no-gutter">
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"><?= _('First Name') ?></label>
+                                <div class="row no-gutter">
+                                    <div class="col-md-8 col-sm-8 col-xs-12 cel-in-row">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><?= _('First Name') ?></label>
 
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="<?= _('First Name') ?>"
-                                               ng-model="registerInfo.firstName">
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" placeholder="<?= _('First Name') ?>"
+                                                       ng-model="registerInfo.firstName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><?= _('Last Name') ?></label>
+
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" placeholder="<?= _('Last Name') ?>"
+                                                       ng-model="registerInfo.lastName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"><?= _('Patronymic Name') ?></label>
+
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control"
+                                                       placeholder="<?= _('Patronymic Name') ?>"
+                                                       ng-model="registerInfo.patronymicName">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12" >
+                                        <div perfect-uploader-preview>
+                                            <input type="file" name="avatar" style="display: none;" ng-model="registerInfo.avatar">
+                                            <a href="#" class="thumbnail img-responsive col-sm-12 right-align-text">
+                                                <img alt="avatar" src="../../../img/admin1.png">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"><?= _('Last Name') ?></label>
 
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="<?= _('Last Name') ?>"
-                                               ng-model="registerInfo.lastName">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"><?= _('Patronymic Name') ?></label>
 
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control"
-                                               placeholder="<?= _('Patronymic Name') ?>"
-                                               ng-model="registerInfo.patronymicName">
-                                    </div>
-                                </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><?= _('Username') ?></label>
 
@@ -82,10 +89,8 @@
                                             <option value="Epidemiologist"><?= _('Epidemiologist') ?></option>
                                             <option value="Gynecologist"><?= _('Gynecologist') ?></option>
                                             <option value="Immunologist"><?= _('Immunologist') ?></option>
-                                            <option
-                                                value="Infectious Disease Specialist"><?= _('Infectious Disease Specialist') ?></option>
-                                            <option
-                                                value="Internal Medicine Specialist"><?= _('Internal Medicine Specialist') ?></option>
+                                            <option value="Infectious Disease Specialist"><?= _('Infectious Disease Specialist') ?></option>
+                                            <option value="Internal Medicine Specialist"><?= _('Internal Medicine Specialist') ?></option>
                                             <option value="Medical Geneticist"><?= _('Medical Geneticist') ?></option>
                                             <option value="Microbiologist"><?= _('Microbiologist') ?></option>
                                             <option value="Neonatologist"><?= _('Neonatologist') ?></option>
@@ -136,7 +141,7 @@
                                     <label class="col-sm-2 control-label"><?= ('Phone') ?></label>
 
                                     <div class="col-sm-10">
-                                        <input type="phone" class="form-control" placeholder="<?= ('Phone') ?>"
+                                        <input type="text" class="form-control" placeholder="<?= ('Phone') ?>"
                                                ng-model="registerInfo.phone">
                                     </div>
                                 </div>
