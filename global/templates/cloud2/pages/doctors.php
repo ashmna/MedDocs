@@ -9,7 +9,7 @@
     <!-- Row start -->
     <div class="row no-gutter">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="panel panel-default">
+            <div class="panel panel-blue">
                 <div class="panel-heading">
                     <h4><?= _('Doctor Details Form') ?></h4>
                     <ul class="links">
@@ -173,7 +173,7 @@
     <!-- Row start -->
     <div class="row no-gutter" ng-init="loadDoctorsList()">
         <div class="col-md-12 col-sm-12 col-sx-12">
-            <div class="panel panel-default">
+            <div class="panel panel-blue">
                 <div class="panel-heading">
                     <h4><?= _('Doctors') ?></h4>
                     <ul class="links">
