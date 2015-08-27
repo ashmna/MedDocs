@@ -9,13 +9,12 @@
 <!-- Row start -->
 <div class="row no-gutter">
     <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="panel panel-blue">
+            <div class="panel-heading ">
                 <h4><?= _('Doctor Details Form') ?></h4>
                 <ul class="links">
                     <li>
                         <a href="#">
-
                             <i class="fa fa-plus-square-o"></i> Added new member
                         </a>
                     </li>
@@ -155,7 +154,7 @@
 <!-- Row start -->
 <div class="row no-gutter" ng-init="loadDoctorsList()">
     <div class="col-md-12 col-sm-12 col-sx-12">
-        <div class="panel panel-default">
+        <div class="panel panel-blue">
             <div class="panel-heading">
                 <h4><?= _('Doctors') ?></h4>
                 <ul class="links">
@@ -174,7 +173,7 @@
                             <th style="width:10%"><?= _('Image') ?></th>
                             <th style="width:40%"><?= _('Name') ?></th>
                             <th style="width:20%" class="hidden-xs"><?= _('Specialization') ?></th>
-                            <th style="width:10%" class="hidden-xs hidden-sm"><?= _('Date') ?></th>
+                            <th style="width:10%" class="hidden-xs hidden-sm"><?= _('Phone') ?></th>
                             <th style="width:10%" class="hidden-xs hidden-sm"><?= _('Action') ?></th>
                         </tr>
                         </thead>
@@ -198,7 +197,7 @@
                                       }"
                                       ng-bind="doctor.specialization"></span>
                             </td>
-                            <td class="hidden-xs hidden-sm" ng-bind="doctor.date"></td>
+                            <td class="hidden-xs hidden-sm" ng-bind="doctor.phone"></td>
                             <td class="hidden-xs hidden-sm">
                                 <div class="btn-group">
                                     <button data-toggle="dropdown" class="btn btn-xs dropdown-toggle">

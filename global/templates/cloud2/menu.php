@@ -14,7 +14,8 @@ namespace {
             default:
                 $menu = [
                     'index',
-                    'doctors'
+                    'doctors',
+                    'clients',
                 ];
                 break;
         }

@@ -67,11 +67,18 @@ CREATE TABLE `doctors` (
 
 
 CREATE TABLE `clients` (
-  `partnerId` INT(3)       NOT NULL DEFAULT 0,
-  `clientId`  INT(11)      NOT NULL AUTO_INCREMENT
+  `partnerId`       INT(3)       NOT NULL DEFAULT 0,
+  `clientId`        INT(11)      NOT NULL AUTO_INCREMENT
   COMMENT 'clientId == userId',
-  `email`     VARCHAR(75)  NULL,
-  `phone`     VARCHAR(255) NULL,
+  `firstName`       VARCHAR(100) NULL,
+  `lastName`        VARCHAR(100) NULL,
+  `patronymicName`  VARCHAR(100) NULL,
+  `gender`          ENUM('Male', 'Female'),
+  `email`           VARCHAR(75)  NULL,
+  `phone`           VARCHAR(255) NULL,
+  `birthDay`        DATE         NULL,
+  `address`         VARCHAR(255) NULL,
+  `lastVisitedDate` DATE         NULL,
   PRIMARY KEY (`clientId`),
   UNIQUE INDEX `clientId_UNIQUE` (`clientId` ASC),
   CONSTRAINT `fk_client_user`
@@ -87,7 +94,7 @@ INSERT INTO users VALUES (1, 1, 'admin', 'admin@meddocs.am', 'Admin', '', 'admin
 
 
 CREATE TABLE `workingTimes` (
-  `partnerId` INT(3)       NOT NULL DEFAULT 0,
+  `partnerId`     INT(3)  NOT NULL DEFAULT 0,
   `workingTimeId` INT(3)  NOT NULL AUTO_INCREMENT,
   `doctorId`      INT(11) NOT NULL DEFAULT 0,
   `date`          DATE    NOT NULL,
@@ -105,7 +112,7 @@ CREATE TABLE `workingTimes` (
 
 
 CREATE TABLE `orders` (
-  `partnerId` INT(3)       NOT NULL DEFAULT 0,
+  `partnerId`    INT(3)  NOT NULL DEFAULT 0,
   `orderId`      INT(11) NOT NULL AUTO_INCREMENT,
   `paretOrderId` INT(11) NOT NULL DEFAULT 0,
   `clientId`     INT(11) NOT NULL,
