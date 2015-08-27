@@ -113,10 +113,12 @@
                                     <label class="col-sm-2 control-label"><?= _('Birthday') ?></label>
 
                                     <div class="col-sm-4">
-                                        <input class="datepicker form-control" ng-model="registerInfo.birthday" perfect-datepicker>
+                                        <div class="input-group date" ng-model="registerInfo.birthday" perfect-datepicker>
+                                            <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-3 registerAvatar" perfect-uploader-preview>
-                                        <input type="file" name="avatar" style="display: none;" ng-model="registerInfo.avatar">
+                                    <div class="col-sm-3 registerAvatar" ng-model="registerInfo.avatar" perfect-uploader-preview show-upload-button>
+                                        <input type="file" name="avatar" style="display: none;">
                                         <a hred="#" class="thumbnail img-responsive col-sm-12 right-align-text">
                                             <img alt="avatar" src="../../../img/admin1.png">
                                         </a>
