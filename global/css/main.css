@@ -2286,5 +2286,7 @@ input[type=radio], input[type=checkbox] {
   padding-right: 10px;
   padding-left: 10px; }
 
-.registerAvatar {
-    float: right;}
+.cel-in-row {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
