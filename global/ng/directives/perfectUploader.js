@@ -1,21 +1,23 @@
 app.directive('perfectUploaderPreview', function ($parse) {
         return function(scope,element,attrs){
 
-            //var inputName = attributes['perfectUploaderPreview'];
-            //var input = angular.element('<input type="file" name="avatar" style="display: none">');
-            //element.append(input);
-
             var input = element[0].querySelector('input');
             var image = element[0].querySelector('img');
             var button = element[0].querySelector('button');
 
             if (attrs.hasOwnProperty('showUploadButton')) {
-                var input = angular.element('<button class="btn btn-sm btn-info">Upload</button>');
-                element.append(input);
+                var buttonElement = angular.element('<div class="center-align-text"><button class="btn btn-sm btn-info">Upload</button></div>');
+                element.after(buttonElement);
+
+                $(buttonElement).click(function(){
+                    $(input).click();
+                });
             }
-            $(image).click(function(){
+
+            element.bind("click", function(e){
                 $(input).click();
             });
+
             $(input).change(function(){
 
                 if (input.files && input.files[0]) {
