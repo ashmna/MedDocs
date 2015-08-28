@@ -14,7 +14,7 @@
                     </ul>
                 </div>
                 <div class="panel-body" id="doctorRegistrationForm">
-                    <form class="form-horizontal" role="form" ng-submit="register(form)">
+                    <form class="form-horizontal" role="form">
                         <div class="row no-gutter">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="row no-gutter">
@@ -157,7 +157,7 @@
                                 </div>
                             </div>
                             <div class="right-align-text col-xs-12">
-                                <button type="submit" class="btn btn-success" ng-show="addNewOpen"><?=_('Register') ?></button>
+                                <button type="submit" class="btn btn-success" ng-show="addNewOpen" ng-click="register()"><?=_('Register') ?></button>
                                 <button type="submit" class="btn btn-success" ng-show="updateUserInfo"><?=_('Update') ?></button>
                             </div>
                         </div>
