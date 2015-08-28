@@ -8,6 +8,7 @@ namespace MD\Helpers;
 use A7\A7;
 use A7\ReflectionUtils;
 use MD\Exceptions\UndefinedMethodException;
+
 //use MD\Models\Affiliate;
 //use MD\Models\CronResult;
 
@@ -181,6 +182,12 @@ class App {
         self::$page = $page;
     }
 
+    public static function getCounterNextIndex($counterName) {
+        $app = self::getInstance();
+        /** @var \MD\DAO\Counter $counterDAO */
+        $counterDAO = $app->container->get('MD\DAO\Counter');
+        return $counterDAO->getNextIndex($counterName);
+    }
 
     /*************** USER ***************/
     /**
