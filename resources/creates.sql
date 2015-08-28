@@ -42,8 +42,8 @@ CREATE TABLE `doctors` (
   `partnerId`      INT(3)       NOT NULL DEFAULT 0,
   `doctorId`       INT(11)      NOT NULL AUTO_INCREMENT
   COMMENT 'doctorId == userId',
-  `email`          VARCHAR(75)  NULL,
-  `phone`          VARCHAR(255) NULL,
+
+  `avatar`         VARCHAR(100) NULL,
   `firstName`      VARCHAR(100) NULL,
   `lastName`       VARCHAR(100) NULL,
   `patronymicName` VARCHAR(100) NULL,
@@ -51,6 +51,8 @@ CREATE TABLE `doctors` (
                    CHARACTER SET 'utf8'
                    COLLATE 'utf8_unicode_ci'
                                 NOT NULL,
+  `email`          VARCHAR(75)  NULL,
+  `phone`          VARCHAR(255) NULL,
   `birthDay`       DATE         NULL,
   `address`        VARCHAR(255) NULL,
   `zipCode`        VARCHAR(10)  NULL,
@@ -70,10 +72,14 @@ CREATE TABLE `clients` (
   `partnerId`       INT(3)       NOT NULL DEFAULT 0,
   `clientId`        INT(11)      NOT NULL AUTO_INCREMENT
   COMMENT 'clientId == userId',
+  `avatar`          VARCHAR(100) NULL,
   `firstName`       VARCHAR(100) NULL,
   `lastName`        VARCHAR(100) NULL,
   `patronymicName`  VARCHAR(100) NULL,
-  `gender`          ENUM('Male', 'Female'),
+  `gender`          ENUM('Male', 'Female')
+                    CHARACTER SET 'utf8'
+                    COLLATE 'utf8_unicode_ci'
+                                 NOT NULL,
   `email`           VARCHAR(75)  NULL,
   `phone`           VARCHAR(255) NULL,
   `birthDay`        DATE         NULL,
@@ -136,4 +142,24 @@ CREATE TABLE `orders` (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
-  COLLATE utf8_unicode_ci
+  COLLATE utf8_unicode_ci;
+
+CREATE TABLE `counters` (
+  `counterName` CHAR(50) NOT NULL,
+  `lastIndex`   INT(11)  NOT NULL DEFAULT 0,
+  PRIMARY KEY (`counterName`),
+  UNIQUE INDEX `counterName_UNIQUE` (`counterName` ASC)
+
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE utf8_unicode_ci;
+
+INSERT INTO counters VALUES ('fileSystem', 0);
+
+DROP PROCEDURE IF EXISTS getCounterNextIndex;
+CREATE PROCEDURE getCounterNextIndex (IN `inCounterName` CHAR(50))
+BEGIN
+  UPDATE counters SET lastIndex = lastIndex + 1 WHERE counterName = inCounterName;
+  SELECT lastIndex FROM counters WHERE counterName = inCounterName;
+END;
