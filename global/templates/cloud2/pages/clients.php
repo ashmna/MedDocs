@@ -6,9 +6,9 @@
                 <div class="panel-heading">
                     <h4><?= _('Client Details Form') ?></h4>
                     <ul class="links">
-                        <li onclick="$('#clientRegistrationForm').slideToggle()">
+                        <li ng-click="slideForm()">
                             <a href="#">
-                                <i class="fa fa-plus-square-o"></i><span><?= _('Add new member') ?></span>
+                                <i ng-class="{'fa fa-minus-square-o' : addNewOpen, 'fa fa-plus-square-o' : !addNewOpen}"></i><span><?= _('Add new member') ?></span>
                             </a>
                         </li>
                     </ul>
@@ -82,8 +82,8 @@
                                 </div>
                             </div>
                             <div class="right-align-text col-xs-12">
-                                <button type="submit" class="btn btn-success"><?=_('Register') ?></button>
-                                <button type="submit" class="btn btn-success"><?=_('Update') ?></button>
+                                <button type="submit" class="btn btn-success" ng-show="addNewOpen"><?=_('Register') ?></button>
+                                <button type="submit" class="btn btn-success" ng-show="updateUserInfo"><?=_('Update') ?></button>
                             </div>
                         </div>
                     </form>

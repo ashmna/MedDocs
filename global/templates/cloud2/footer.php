@@ -56,6 +56,7 @@ if(App::isLoggedUser()) { ?>
 <!-- angular -->
 <script src="/global/ng/app.js"></script>
 <script src="/global/ng/factory/serverConnector.js"></script>
+<script src="/global/ng/factory/notification.js"></script>
 
 <!-- angular services -->
 <script src="/global/ng/service/userService.js"></script>

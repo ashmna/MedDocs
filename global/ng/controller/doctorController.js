@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('doctorController', ['$scope', 'userServices',
-    function ($scope, userServices) {
+app.controller('doctorController', ['$scope', 'userServices', 'Notification',
+    function ($scope, userServices, Notification) {
 
         $scope.filter = {
             role : 'Doctor'
@@ -9,15 +9,17 @@ app.controller('doctorController', ['$scope', 'userServices',
         $scope.registerInfo = {
             role : 'Doctor'
         };
+        $scope.addNewOpen = false;
+        $scope.updateUserInfo = false;
 
         $scope.register = function () {
 
             userServices.register($scope.registerInfo)
                 .success(function (data) {
                     if (data.result) {
-                        //window.location.reload();
+                        $scope.getDoctorsList();
                     } else {
-                        // TODO: ALERT
+                        alert('Registration fail');
                     }
                 });
         };
@@ -32,6 +34,16 @@ app.controller('doctorController', ['$scope', 'userServices',
                         // TODO: ALERT
                     }
                 });
+        };
+
+        $scope.slideForm = function () {
+            if($scope.addNewOpen) {
+                $scope.addNewOpen = false;
+            } else {
+                $scope.addNewOpen = true;
+            }
+
+            $('#doctorRegistrationForm').slideToggle()
         }
 
     }]);
