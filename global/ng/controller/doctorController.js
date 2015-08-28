@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('doctorController', ['$scope', 'userServices', 'Notification',
-    function ($scope, userServices, Notification) {
+app.controller('doctorController', ['$scope', 'userServices',
+    function ($scope, userServices) {
 
         $scope.filter = {
             role : 'Doctor'

@@ -27,7 +27,7 @@ app.directive('perfectUploaderPreview', function ($parse) {
                     reader.onload = function (e) {
                         var src = e.target.result;
                         scope.$apply(function (scope) {
-                            $parse(attrs.ngModel).assign(scope, {fileName: file, src: src});
+                            $parse(attrs.ngModel).assign(scope, {fileName: file.name, src: src});
                         });
                         $(image).attr('src', src);
                     };

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AFF\DAO\Impl;
+namespace MD\DAO\Impl;
 
 
 use MD\DAO\Counter;

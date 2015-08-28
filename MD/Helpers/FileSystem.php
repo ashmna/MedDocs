@@ -1,12 +1,8 @@
 <?php
 
 
-namespace AFF\Helpers;
+namespace MD\Helpers;
 
-
-use MD\Helpers\App;
-use MD\Helpers\Config;
-use MD\Helpers\Defines;
 
 class FileSystem {
 
@@ -32,7 +28,7 @@ class FileSystem {
     }
 
     public static function generateFileName($originalFilename, $fileType = Defines::FILE_TYPE_DOCUMENT) {
-        $extension = substr('.', $originalFilename);
+        $extension = explode('.', $originalFilename);
         $extension = $extension[count($extension)-1];
 
         $part = self::$fileSystemPart;
@@ -51,7 +47,7 @@ class FileSystem {
         $path .= "/data/$folderName/$folderNumber";
         mkdir($path, 0777, true);
         $path .= "/$number.$extension";
-        $fileName = Defines::FILE_TYPE_VIDEO.$number.$extension;
+        $fileName = Defines::FILE_TYPE_VIDEO.$number.'.'.$extension;
         return [$fileName, $path];
     }
 
