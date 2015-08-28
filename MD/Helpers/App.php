@@ -58,6 +58,7 @@ class App {
         set_error_handler(['MD\Helpers\App','errorHandler']);
         $this->container = new A7();
         $this->container->enablePostProcessor('DependencyInjection', $config->definition);
+        $this->container->enablePostProcessor('Transaction', ['class' => '\MD\Helpers\DB']);
 //        $this->container->enablePostProcessor('Logger', ['path' => 'D:\affiliates.log']);
     }
 

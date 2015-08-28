@@ -8,6 +8,11 @@ use MD\Services\UserService;
 use MD\Helpers\App;
 use MD\Helpers\Notification;
 
+/**
+ * Class UserServiceImpl
+ * @package MD\Services\Impl
+ * @Transactional
+ */
 class UserServiceImpl implements UserService {
 
     /**
