@@ -11,4 +11,5 @@ interface User {
      */
     function getUserByUsername($username);
     function createUser(array $userData);
+    function getUsersList(array $filter=[]);
 }

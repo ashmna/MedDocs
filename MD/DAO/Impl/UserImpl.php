@@ -10,7 +10,8 @@ use MD\Models\User;
 use MD\Helpers\Config;
 use MD\Helpers\Defines;
 
-class UserImpl implements \MD\DAO\User {
+class UserImpl implements \MD\DAO\User
+{
 
     /**
      * @Inject
@@ -19,23 +20,25 @@ class UserImpl implements \MD\DAO\User {
     protected $db;
 
     /** @inheritdoc */
-    public function getUserByUsername($username) {
+    public function getUserByUsername($username)
+    {
         $bind = [
             'partnerId' => Config::getInstance()->partnerId,
             'username' => $username,
         ];
         $user = null;
         $users = $this->db->select('users', 'partnerId = :partnerId and username = :username', $bind);
-        if(count($users) == 1) {
+        if (count($users) == 1) {
             $user = new User($users[0]);
         }
         return $user;
     }
 
-    public function createUser(array $userData) {
+    public function createUser(array $userData)
+    {
         $user = new User($userData);
         $userId = $this->db->insert('users', $user->toArray());
-        switch($user->getRole()) {
+        switch ($user->getRole()) {
             case Defines::ROLE_CLIENT;
                 $client = new Client($userData);
                 $client->setUserId($userId);
@@ -48,6 +51,37 @@ class UserImpl implements \MD\DAO\User {
                 break;
         }
         return $userId;
+    }
+
+    public function getUsersList(array $filter = [])
+    {
+        $bind = [
+            'partnerId' => Config::getInstance()->partnerId
+        ];
+        $where = ['partnerId =:partnerId'];
+        foreach ($filter as $key => $val) {
+            $likeVal = '%' . preg_replace('/\s+/', '%', trim($val)) . '%';
+            switch ($key) {
+                case 'username':
+                    $where[] = 'username LIKE :username';
+                    $bind['username'] = $likeVal;
+                    break;
+                case 'role':
+                    switch ($val) {
+                        case Defines::ROLE_DOCTOR:
+                            $tableName = 'doctors';
+                            break;
+                        case Defines::ROLE_CLIENT:
+                            $tableName = 'clients';
+                            break;
+                    }
+            }
+        }
+
+        $where = implode(' AND ', $where);
+        $users = $this->db->select($tableName, $where, $bind);
+
+        return $users;
     }
 
 

@@ -1,4 +1,4 @@
-<div ng-controller="doctorController" ng-cloak>
+<div ng-controller="doctorController" ng-init="getDoctorsList()" ng-cloak>
     <!-- Row start -->
     <div class="row no-gutter">
         <div class="col-md-12 col-sm-12 col-xs-12">

@@ -25,6 +25,13 @@ app.service('userServices', ['serverConnector', function (serverConnector) {
             url : url('register'),
             data: {userData: data}
         });
-    }
+    };
+
+    this.getUsersList = function (data) {
+        return serverConnector.send({
+            url : url('getUsersList'),
+            data: {filter: data}
+        });
+    };
 
 }]);

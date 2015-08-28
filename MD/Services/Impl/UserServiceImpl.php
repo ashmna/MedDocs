@@ -46,5 +46,9 @@ class UserServiceImpl implements UserService {
         return $userId;
     }
 
+    public function getUsersList($filter) {
+        return $this->userDao->getUsersList($filter);
+    }
+
 
 }
