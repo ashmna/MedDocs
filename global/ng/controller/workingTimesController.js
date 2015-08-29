@@ -5,6 +5,13 @@ function ($scope) {
 
     $scope.monthList = [];
     $scope.month = 0;
+    $scope.year = new Date().getYear();
+    $scope.dayWorkingTimes = [
+        {from:"10:00:00", to:"14:00:00"},
+        {from:"15:00:00", to:"19:00:00"}
+    ];
+
+    $scope.workingTimes = {};
 
     function calendar(month) {
         var retMonth = [];
@@ -31,7 +38,7 @@ function ($scope) {
 
         // Temp values to get the number of days in current month, and previous month. Also getting the day of the week.
         var tempDate = new Date(tempMonth + ' 1 ,' + year);
-        var tempweekday = tempDate.getDay();
+        var tempweekday = tempDate.getDay() -1;
         var tempweekday2 = tempweekday;
         var dayAmount = totalDays[month];
 
@@ -39,7 +46,7 @@ function ($scope) {
 
 
         while (tempweekday > 0) {
-            days.push(0);
+            days.push({day:0});
             tempweekday--;
         }
 
@@ -51,16 +58,16 @@ function ($scope) {
             }
 
             if (i == day && month == cmonth) {
-                days.push(i);
+                days.push({day:i, current: true});
             } else {
-                days.push(i);
+                days.push({day:i});
             }
             tempweekday2++;
             i++;
 
         }
         while (tempweekday2 < 7) {
-            days.push(0);
+            days.push({day:0});
             tempweekday2++;
         }
         if (days.length) {
@@ -70,9 +77,29 @@ function ($scope) {
     }
 
     $scope.renderMonth = function (month) {
-        $scope.month = month | new Date().getMonth();
-        $scope.monthList = calendar($scope.month);
+        month = month | new Date().getMonth();
+        $scope.monthList = calendar(month);
+        $scope.month = month + 1;
+        if($scope.month < 10) {
+            $scope.month = "0" + $scope.month;
+        }
     };
+
+    $scope.daySelect = function(item) {
+        if(!item.day) return;
+
+        var day = (item.day < 10) ? "0" + item.day : item.day;
+
+        var key = $scope.year + "-" + $scope.month + "-" + day;
+
+        if($scope.workingTimes[key]) {
+            item.wait = true;
+            delete $scope.workingTimes[key];
+        } else {
+            item.wait = true;
+            $scope.workingTimes[key] = angular.copy($scope.dayWorkingTimes);
+        }
+    }
 
 
 

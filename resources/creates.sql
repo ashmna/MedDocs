@@ -8,6 +8,8 @@ DROP TABLE IF EXISTS `doctors`;
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `partners`;
 
+DROP TABLE IF EXISTS `counters`;
+
 CREATE TABLE `partners` (
   `partnerId` INT(3)       NOT NULL AUTO_INCREMENT,
   `name`      VARCHAR(255) NOT NULL,

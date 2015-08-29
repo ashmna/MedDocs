@@ -47,13 +47,15 @@ class FileSystem {
         $path .= "/data/$folderName/$folderNumber";
         mkdir($path, 0777, true);
         $path .= "/$number.$extension";
-        $fileName = Defines::FILE_TYPE_VIDEO.$number.'.'.$extension;
+        $fileName = $fileType.$number.'.'.$extension;
         return [$fileName, $path];
     }
 
     public static function crateFileFromBase64($string, $originalFilename, $fileType = Defines::FILE_TYPE_IMAGE) {
         list($fileName, $path) = self::generateFileName($originalFilename, $fileType);
-        $data = base64_decode($string);
+        list($type, $data) = explode(';', $string);
+        list(, $data)      = explode(',', $data);
+        $data = base64_decode($data);
         file_put_contents($path, $data);
         return $fileName;
     }
