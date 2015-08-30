@@ -60,6 +60,7 @@ if(App::isLoggedUser()) { ?>
 
 <!-- angular services -->
 <script src="/global/ng/service/userService.js"></script>
+<script src="/global/ng/service/workingTimesService.js"></script>
 
 <!-- angular controllers -->
 <script src="/global/ng/controller/userController.js"></script>

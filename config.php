@@ -27,6 +27,13 @@ return [
         ]
     ],
 
+    'workingTimes' => [
+        'day' => [
+                ['startTime' => '10:00', 'endTime' => '14:00'],
+                ['startTime' => '15:00', 'endTime' => '19:00'],
+            ],
+    ],
+
 
     'languages'          => [
         "en_GB" => "English",

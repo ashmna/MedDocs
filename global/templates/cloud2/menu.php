@@ -16,6 +16,7 @@ namespace {
                     'index',
                     'doctors',
                     'clients',
+                    'workingtimes',
                 ];
                 break;
         }

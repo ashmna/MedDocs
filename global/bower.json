@@ -1,6 +1,7 @@
 {
   "name": "MedDocs",
   "dependencies": {
+    "components-font-awesome" : "*",
     "angular": "*"
   }
 }

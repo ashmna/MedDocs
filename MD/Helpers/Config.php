@@ -22,6 +22,7 @@ use MD\Exceptions\ConfigurationException;
  * @property string $environment
  * @property array $languages
  * @property string $timezone
+ * @property array $workingTimes
  */
 class Config {
     use GetterSetter;
@@ -45,6 +46,7 @@ class Config {
     protected $environment = 'development';
     protected $languages = [];
     protected $languagesCode;
+    protected $workingTimes = [];
 
 
 
@@ -261,4 +263,7 @@ class Config {
         return $res;
     }
 
+    public function getWorkingTimes() {
+        return $this->workingTimes;
+    }
 }

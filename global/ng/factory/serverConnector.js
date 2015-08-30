@@ -10,7 +10,7 @@ app.factory('serverConnector', function($http, $q) {
     };
 
     function send (request) {
-        var promise = $http(angular.merge(req, request));
+        var promise = $http(angular.merge(angular.copy(req), request));
         promise.then(
             function() {},
             function(error) {

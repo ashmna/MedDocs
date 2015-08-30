@@ -100,6 +100,9 @@ CREATE TABLE `clients` (
 
 INSERT INTO users VALUES (1, 1, 'admin', 'admin@meddocs.am', 'Admin', '', 'admin');
 
+INSERT INTO users VALUES (1, 2, 'doctor', 'doctor@meddocs.am', 'Doctor', '', 'doctor');
+INSERT INTO doctors (partnerId, doctorId) VALUES (1, 2);
+
 
 CREATE TABLE `workingTimes` (
   `partnerId`     INT(3)  NOT NULL DEFAULT 0,
@@ -109,7 +112,6 @@ CREATE TABLE `workingTimes` (
   `startTime`     TIME    NOT NULL,
   `endTime`       TIME    NOT NULL,
   PRIMARY KEY (`workingTimeId`),
-  UNIQUE INDEX `doctorId_UNIQUE` (`doctorId` ASC),
   CONSTRAINT `fk_workingTime_doctor`
   FOREIGN KEY (`doctorId`)
   REFERENCES `doctors` (`doctorId`)
