@@ -32,8 +32,8 @@ class WorkingTimesImpl implements WorkingTimes {
                 $res[$key] = [];
             }
             $res[$key][] = [
-                'startTime' => $row['startTime'],
-                'endTime'   => $row['endTime'],
+                'startTime' => substr($row['startTime'], 0, -3),
+                'endTime'   => substr($row['endTime'], 0, -3),
             ];
         }
         return $res;
