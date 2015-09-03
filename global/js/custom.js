@@ -47,6 +47,7 @@ $(function() {
 });
 
 //Date Range Picker
+/*
 $(document).ready(function() {
   $('.reportrange').daterangepicker({
     startDate: moment().subtract('days', 29),
@@ -90,3 +91,4 @@ $(document).ready(function() {
   //Set the initial state of the picker label
   $('.reportrange span').html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
 });
+*/

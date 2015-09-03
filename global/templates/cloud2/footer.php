@@ -18,9 +18,6 @@ if(App::isLoggedUser()) { ?>
 </div>
 <!-- Dashboard Wrapper End -->
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="/global/bower_components/jquery/dist/jquery.min.js"></script>
-
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/global/js/bootstrap.min.js"></script>
 
@@ -43,12 +40,13 @@ if(App::isLoggedUser()) { ?>
 
 <!-- Date Range -->
 <script src="/global/bower_components/moment/min/moment.min.js"></script>
-<script src="/global/js/daterange/daterangepicker.js"></script>
+<!-- <script src="/global/js/daterange/daterangepicker.js"></script>-->
 <script src="/global/js/datepicker/bootstrap-datepicker.js"></script>
 
 <script src="/global/bower_components/angular-ui-calendar/src/calendar.js"></script>
 <script src="/global/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
 <script src="/global/bower_components/fullcalendar/dist/gcal.js"></script>
+<script src="/global/bower_components/fullcalendar-scheduler/dist/scheduler.js"></script>
 
 
 <!-- Custom JS -->

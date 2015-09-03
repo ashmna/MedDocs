@@ -1,44 +1,44 @@
 <?php
 use MD\Helpers\App;
 if(App::isLoggedUser()) {
-$page = App::getCurrentPage();
-$menu = include 'menu.php';
-?>
-<!-- Left sidebar start -->
-<aside id="sidebar">
+    $page = App::getCurrentPage();
+    $menu = include 'menu.php';
+    ?>
+    <!-- Left sidebar start -->
+    <aside id="sidebar">
 
-    <!-- Logo starts -->
-    <a href="#" class="logo">
-        <img src="/img/logo.png" alt="logo">
-    </a>
-    <!-- Logo ends -->
+        <!-- Logo starts -->
+        <a href="#" class="logo">
+            <img src="/img/logo.png" alt="logo">
+        </a>
+        <!-- Logo ends -->
 
-    <!-- Menu start -->
-    <div id='menu'>
-        <ul>
-            <?php foreach($menu as $item) { ?>
-            <li <?= $page == $item ? "class='highlight'" :"" ?> >
-                <a href='/doc/page/<?= $item ?>' >
-                    <div class="fs1" aria-hidden="true" data-icon="&#xe019;"></div>
-                    <span><?= _($item) ?></span>
-                </a>
-            </li>
-            <?php } ?>
-        </ul>
-    </div>
-    <!-- Menu End -->
+        <!-- Menu start -->
+        <div id='menu'>
+            <ul>
+                <?php foreach($menu as $item) { ?>
+                    <li <?= $page == $item ? "class='highlight'" :"" ?> >
+                        <a href='/doc/page/<?= $item ?>' >
+                            <div class="fs1" aria-hidden="true" data-icon="&#xe019;"></div>
+                            <span><?= _($item) ?></span>
+                        </a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+        <!-- Menu End -->
 
-    <!-- Extras starts -->
-    <div class="extras">
-        <div class="ex-wrapper">
-            <div class="alert alert-info">
-                <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+        <!-- Extras starts -->
+        <div class="extras">
+            <div class="ex-wrapper">
+                <div class="alert alert-info">
+                    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Extras ends -->
-</aside>
-<!-- Left sidebar end -->
+        <!-- Extras ends -->
+    </aside>
+    <!-- Left sidebar end -->
 
 
     <!-- Dashboard Wrapper Start -->

@@ -17,6 +17,8 @@ namespace {
                     'doctors',
                     'clients',
                     'workingtimes',
+                    'calendar1',
+                    'edulik',
                 ];
                 break;
         }

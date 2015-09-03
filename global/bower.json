@@ -1,9 +1,10 @@
 {
   "name": "MedDocs",
   "dependencies": {
+    "jquery": "*",
     "components-font-awesome" : "*",
-    "angular": "*",
+    "angular": "1.4.5",
     "angular-ui-calendar": "*",
-    "fullcalendar-scheduler": "*"
+    "fullcalendar-scheduler": "1.0.0"
   }
 }
