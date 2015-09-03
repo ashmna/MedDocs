@@ -19,7 +19,7 @@ if(App::isLoggedUser()) { ?>
 <!-- Dashboard Wrapper End -->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="/global/js/jquery.js"></script>
+<script src="/global/bower_components/jquery/dist/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/global/js/bootstrap.min.js"></script>
@@ -42,9 +42,14 @@ if(App::isLoggedUser()) { ?>
 <script src="/global/js/tiny-scrollbar.js"></script>
 
 <!-- Date Range -->
-<script src="/global/js/daterange/moment.js"></script>
+<script src="/global/bower_components/moment/min/moment.min.js"></script>
 <script src="/global/js/daterange/daterangepicker.js"></script>
 <script src="/global/js/datepicker/bootstrap-datepicker.js"></script>
+
+<script src="/global/bower_components/angular-ui-calendar/src/calendar.js"></script>
+<script src="/global/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="/global/bower_components/fullcalendar/dist/gcal.js"></script>
+
 
 <!-- Custom JS -->
 <script src="/global/js/custom.js"></script>
@@ -71,6 +76,31 @@ if(App::isLoggedUser()) { ?>
 <!-- angular directives -->
 <script src="/global/ng/directives/perfectUploader.js"></script>
 <script src="/global/ng/directives/perfectDatepicker.js"></script>
+
+
+<script>
+	app.controller('MyController', function($scope) {
+		$scope.eventSources = [];
+		/* config object */
+		$scope.uiConfig = {
+
+			calendar:{
+				smallTimeFormat: 'H(:mm)',
+				height: "100%",
+				editable: true,
+				header:{
+					left: 'month agendaWeek agendaDay',
+					center: 'title',
+					right: 'today prev,next'
+				},
+				dayClick: function(){console.log('dayClick', arguments)},
+				eventDrop: function(){console.log('eventDrop', arguments)},
+				eventResize: function(){console.log('eventResize', arguments)}
+			}
+		};
+	});
+</script>
+
 
 </body>
 </html>

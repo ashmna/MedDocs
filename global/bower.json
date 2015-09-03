@@ -2,6 +2,8 @@
   "name": "MedDocs",
   "dependencies": {
     "components-font-awesome" : "*",
-    "angular": "*"
+    "angular": "*",
+    "angular-ui-calendar": "*",
+    "fullcalendar-scheduler": "*"
   }
 }

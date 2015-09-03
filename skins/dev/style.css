@@ -5,7 +5,8 @@
 @import "/global/css/slidebars.css";
 @import "/global/bower_components/components-font-awesome/css/font-awesome.min.css";
 @import "/global/fonts/metrize.css";
-
+@import "/global/bower_components/fullcalendar/dist/fullcalendar.css";
+/*@import "/global/css/fullcalendar.css";*/
 
 /*
 @import "/global/css/easy-wizard/jquery.snippet.min.css";

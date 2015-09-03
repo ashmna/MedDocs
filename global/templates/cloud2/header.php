@@ -8,6 +8,7 @@ use MD\Helpers\Config;
 	<title><?= Config::getInstance()->partnerName ?></title>
 
 	<link rel="icon" href="/img/favicon.ico">
+
 <?php if(App::isLoggedUser()) { ?>
 	<link rel="stylesheet" type="text/css" href="/style.css"/>
 	<link rel="stylesheet" type="text/css" href="/global/css/datepicker/bootstrap-datepicker3.css">
@@ -26,12 +27,13 @@ use MD\Helpers\Config;
 	<!-- Error CSS -->
 	<link href="/global/css/login.css" rel="stylesheet" media="screen">
 
+	<!-- Font Awesome -->
+	<link href="/global/bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
 	<!-- Animate CSS -->
 	<link href="/global/css/animate.css" rel="stylesheet" media="screen">
-
-	<!-- Font Awesome -->
-	<link href="/global/fonts/font-awesome.min.css" rel="stylesheet">
 <?php } ?>
+
 	<script src="/global/bower_components/angular/angular.js"></script>
 </head>
 <body>
