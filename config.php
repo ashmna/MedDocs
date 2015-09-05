@@ -4,7 +4,7 @@ return [
         'host' => 'localhost',
         'name' => 'med_docs',
         'user' => 'root',
-        'pass' => '',
+        'pass' => '1234',
     ],
 
     'definition' => [

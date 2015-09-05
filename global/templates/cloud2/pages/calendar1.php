@@ -1,7 +1,7 @@
 
-<div ng-controller="MyController">
+<div ng-controller="calendarController">
 
-<div ui-calendar="uiConfig.calendar" ng-model="eventSources">
+<div ui-calendar="calendar" ng-model="eventSources">
 
 </div>
 

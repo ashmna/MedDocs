@@ -70,34 +70,11 @@ if(App::isLoggedUser()) { ?>
 <script src="/global/ng/controller/doctorController.js"></script>
 <script src="/global/ng/controller/clientController.js"></script>
 <script src="/global/ng/controller/workingTimesController.js"></script>
+<script src="/global/ng/controller/calendarController.js"></script>
 
 <!-- angular directives -->
 <script src="/global/ng/directives/perfectUploader.js"></script>
 <script src="/global/ng/directives/perfectDatepicker.js"></script>
-
-
-<script>
-	app.controller('MyController', function($scope) {
-		$scope.eventSources = [];
-		/* config object */
-		$scope.uiConfig = {
-
-			calendar:{
-				smallTimeFormat: 'H(:mm)',
-				height: "100%",
-				editable: true,
-				header:{
-					left: 'month agendaWeek agendaDay',
-					center: 'title',
-					right: 'today prev,next'
-				},
-				dayClick: function(){console.log('dayClick', arguments)},
-				eventDrop: function(){console.log('eventDrop', arguments)},
-				eventResize: function(){console.log('eventResize', arguments)}
-			}
-		};
-	});
-</script>
 
 
 </body>
