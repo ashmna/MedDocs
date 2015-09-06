@@ -41,13 +41,14 @@ if(App::isLoggedUser()) { ?>
 <!-- Date Range -->
 <script src="/global/bower_components/moment/min/moment.min.js"></script>
 <!-- <script src="/global/js/daterange/daterangepicker.js"></script>-->
-<script src="/global/js/datepicker/bootstrap-datepicker.js"></script>
+<script src="/global/js/datepicker/bootstrap-datepicker.min.js"></script>
 
 <script src="/global/bower_components/angular-ui-calendar/src/calendar.js"></script>
 <script src="/global/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
 <script src="/global/bower_components/fullcalendar/dist/gcal.js"></script>
-<script src="/global/bower_components/fullcalendar-scheduler/dist/scheduler.js"></script>
-
+<script src="/global/bower_components/fullcalendar-scheduler/dist/scheduler.min.js"></script>
+<script src="/global/bower_components/angular-sweetalert/SweetAlert.min.js"></script>
+<script src="/global/bower_components/sweetalert/dist/sweetalert.min.js"></script>
 
 <!-- Custom JS -->
 <script src="/global/js/custom.js"></script>
@@ -64,6 +65,7 @@ if(App::isLoggedUser()) { ?>
 <!-- angular services -->
 <script src="/global/ng/service/userService.js"></script>
 <script src="/global/ng/service/workingTimesService.js"></script>
+<script src="/global/ng/service/orderService.js"></script>
 
 <!-- angular controllers -->
 <script src="/global/ng/controller/userController.js"></script>

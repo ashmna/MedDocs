@@ -1,7 +1,6 @@
-'use strict';
-
 app.controller('workingTimesController', ['$scope', 'workingTimesService',
 function ($scope, workingTimesService) {
+    'use strict';
 
     $scope.monthList = [];
     $scope.month = "01";

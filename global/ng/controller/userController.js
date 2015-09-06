@@ -1,7 +1,6 @@
-'use strict';
-
 app.controller('userController', ['$scope', 'userServices',
 function ($scope, userServices) {
+    'use strict';
 
     $scope.userLogin = {};
     $scope.userInfo = {};
