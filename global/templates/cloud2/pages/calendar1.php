@@ -2,43 +2,104 @@
 
     <!-- Row start -->
     <div class="row no-gutter">
-        <div class="col-md-3 col-sm-12">
 
-        </div>
         <div class="col-md-9 col-sm-12">
 
             <div ui-calendar="config" calendar="doctor" ng-model="eventSources" ></div>
 
         </div>
+
+
+        <div class="col-md-3 col-sm-12">
+
+        </div>
     </div>
 
 
+
     <!-- Modal -->
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <div id="order-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+        data-backdrop="false" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                     <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
                 </div>
 
-                <div class="modal-body">
-                    <h4>Text in a modal</h4>
-                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                <div class="modal-body ">
 
-                    <h4>Popover in a modal</h4>
-                    <p>This <a href="#" role="button" class="btn btn-default popover-test" title="" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A Title">button</a> should trigger a popover on click.</p>
 
-                    <h4>Tooltips in a modal</h4>
-                    <p><a href="#" class="tooltip-test" title="" data-original-title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="" data-original-title="Tooltip">that link</a> should have tooltips on hover.</p>
 
+
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12 form-group">
+                            <label for="start-time"><?= _('Start Time') ?></label>
+                            <input id="start-time" type="text" class="form-control" placeholder="<?= _('Start Time') ?>" ng-model="editOrder.start">
+                        </div>
+                        <div class="col-sm-6 col-xs-12 form-group">
+                            <label for="end-time"><?= _('End Time') ?></label>
+                            <input id="end-time" type="text" class="form-control" placeholder="<?= _('End Time') ?>" ng-model="editOrder.end">
+                        </div>
+                    </div>
                     <hr>
 
-                    <h4>Overflowing text to show scroll behavior</h4>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label for="search-client"><?= _('Client') ?></label>
+                        </div>
+                        <div class="col-xs-6 ">
+                            <dl>
+
+                                <dt><?= _('First Name') ?></dt>
+                                <dd ng-bind="editOrder.client.firstName || '...'"></dd>
+
+                                <dt><?= _('Last Name') ?></dt>
+                                <dd ng-bind="editOrder.client.lastName || '...'"></dd>
+
+                                <dt><?= _('Phone') ?></dt>
+                                <dd ng-bind="editOrder.client.phone || '...'"></dd>
+
+                            </dl>
+                        </div>
+
+                        <div class="col-xs-6 ">
+                            <dl>
+
+                                <dt><?= _('Gender') ?></dt>
+                                <dd ng-bind="editOrder.client.gender || '...'"></dd>
+
+                                <dt><?= _('Email') ?></dt>
+                                <dd ng-bind="editOrder.client.email || '...'"></dd>
+
+                                <dt><?= _('Username') ?></dt>
+                                <dd ng-bind="editOrder.client.username || '...'"></dd>
+
+                            </dl>
+                        </div>
+
+                        <div class="col-xs-12 form-group">
+                            <input id="search-client" type="text" class="form-control"
+                                   placeholder="<?= _('John Smith +123456789') ?>"
+                                   ng-model="editOrder.client.searchString">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 form-group">
+                            <label for="order-description"><?= _('Description') ?></label>
+                            <textarea id="order-description" class="form-control" rows="3"
+                                      style="resize: none" placeholder=""
+                                      ng-model="editOrder.description"></textarea>
+                        </div>
+                    </div>
+
+
+
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

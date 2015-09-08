@@ -5,6 +5,7 @@
             $('#calendar').fullCalendar({
                 now: '2015-08-07',
                 editable: true, // enable draggable events
+                selectable: true, // enable draggable events
                 aspectRatio: 1.8,
                 scrollTime: '00:00', // undo default 6am scrollTime
                 header: {

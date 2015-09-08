@@ -5,6 +5,9 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
     var getCalendar = function() {
         return uiCalendarConfig.calendars.doctor;
     };
+    $scope.editOrder = {
+        client:{}
+    };
 
     $scope.eventSources = [
         {
@@ -51,8 +54,16 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
         events: $scope.eventSources,
 
         select: function(start, end) {
+            $scope.editOrder = {
+                start : start,
+                end   : end,
+                client:{}
+            };
+            $scope.openPopup(event);
+
+            getCalendar().fullCalendar('unselect');
             //getCalendar().fullCalendar('renderEvent', eventData, true); // stick? = true
-            //getCalendar().fullCalendar('unselect');
+
 
             //console.log(getCalendar());
             //SweetAlert.swal({
@@ -66,6 +77,23 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
     };
 
 
+
+    $scope.openPopup = function() {
+        var el = $('#order-modal');
+        el.modal('show');
+
+        el.css({paddingRight:'17px'});
+        $('body').css({paddingRight:'17px'});
+    };
+
+    $scope.closePopup = function() {
+        var el = $('#order-modal');
+        el.css({paddingRight:'0px'});
+
+        el.modal('hide');
+        $('body').css({paddingRight:'0px'});
+
+    };
 
 
 
