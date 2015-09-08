@@ -2,6 +2,7 @@
   "name": "MedDocs",
   "dependencies": {
     "jquery": "*",
+    "jquery-ui": "*",
     "components-font-awesome" : "*",
     "angular": "1.4.5",
     "angular-ui-calendar": "*",

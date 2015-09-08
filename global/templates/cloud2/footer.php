@@ -17,7 +17,7 @@ if(App::isLoggedUser()) { ?>
 <!-- Footer end -->
 </div>
 <!-- Dashboard Wrapper End -->
-
+<script src="/global/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/global/js/bootstrap.min.js"></script>
 

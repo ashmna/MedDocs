@@ -95,6 +95,110 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
 
     };
 
+    $scope.initAutocomplete = function() {
+        var availableTags = [
+            "ActionScript",
+            "AppleScript",
+            "Asp",
+            "BASIC",
+            "C",
+            "C++",
+            "Clojure",
+            "COBOL",
+            "ColdFusion",
+            "Erlang",
+            "Fortran",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Lisp",
+            "Perl",
+            "PHP",
+            "Python",
+            "Ruby",
+            "Scala",
+            "Scheme"
+        ];
+        var autocomplete = $('#search-client').autocomplete({
+            source: function( request, response ) {
+               /* request.term
+                $.ajax({
+                    url: "http://gd.geobytes.com/AutoCompleteCity",
+                    dataType: "jsonp",
+                    data: {
+                        q: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                });*/
+
+                console.log('source');
+
+                response(
+                    [
+                        "AppleScript",
+                        "Asp"        ,
+                        "BASIC"      ,
+                        "C"          ,
+                        "C++"        ,
+                        "Clojure"    ,
+                        "COBOL"      ,
+                        "ColdFusion" ,
+                        "Erlang"     ,
+                        "Fortran"    ,
+                        "Groovy"     ,
+                        "Haskell"    ,
+                        "Java"       ,
+                        "JavaScript" ,
+                        "Lisp"       ,
+                        "Perl"       ,
+                        "PHP"        ,
+                        "Python"     ,
+                        "Ruby"       ,
+                        "Scala"      ,
+                        "Scheme"
+                    ]
+                );
+            },
+            minLength: 1,
+            select: function( event, ui ) {
+                //log( ui.item ?
+                //"Selected: " + ui.item.label :
+                //"Nothing selected, input was " + this.value);
+            },
+            open: function() {
+                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+            },
+            close: function() {
+                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+            }
+        });
+            //;
+        //autocomplete.autocomplete( "instance" )._renderMenu = function(ul, items) {
+        //    console.log('dropdown-menu');
+        //    var self = this;
+        //    var ddMenu = ul.append('<ul class="dropdown-menu"></ul>');
+        //    $.each( items, function( index, item ) {
+        //        self._renderItem( ddMenu, item );
+        //    });
+        //};
+
+        //.autocomplete( "instance" )._renderItem =  function( ul, item ) {
+        //    return $( "<li>" )
+        //        .append( "<a>" + item.label+ " </a>" )
+        //        .appendTo( ul );
+        //};
+
+
+        //autocomplete.autocomplete( "instance" )._renderItem = function(ul, item) {
+        //    return $('<li>\
+        //        <a>'+ item.label +'\
+        //        </a>\
+        //    </li>').appendTo( ul );
+        //};
+    };
 
 
 

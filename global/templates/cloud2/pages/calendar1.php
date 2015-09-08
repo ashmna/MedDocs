@@ -48,7 +48,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
-                            <label for="search-client"><?= _('Client') ?></label>
+                            <label for="search-client"><h4><?= _('Client') ?></h4></label>
                         </div>
                         <div class="col-xs-6 ">
                             <dl>
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="col-xs-12 form-group">
-                            <input id="search-client" type="text" class="form-control"
+                            <input id="search-client" type="text" class="form-control" ng-init="initAutocomplete()"
                                    placeholder="<?= _('John Smith +123456789') ?>"
                                    ng-model="editOrder.client.searchString">
                         </div>

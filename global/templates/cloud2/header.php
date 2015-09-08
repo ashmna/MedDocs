@@ -12,6 +12,8 @@ use MD\Helpers\Config;
 	<?php if(App::isLoggedUser()) { ?>
 		<link rel="stylesheet" type="text/css" href="/style.css"/>
 		<link rel="stylesheet" type="text/css" href="/global/css/datepicker/bootstrap-datepicker3.css">
+		<link rel="stylesheet" type="text/css" href="/global/bower_components/jquery-ui/themes/vader/jquery-ui.min.css">
+		<link rel="stylesheet" type="text/css" href="/global/bower_components/jquery-ui/themes/vader/theme.css">
 		<?php if (Config::getInstance()->environment == 'development') { ?>
 
 		<?php } else { ?>
