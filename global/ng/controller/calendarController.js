@@ -199,7 +199,16 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
         //    </li>').appendTo( ul );
         //};
     };
+    $scope.validateSearchString = function() {
+        $scope.editOrder.client.phone = $scope.editOrder.client.searchString.replace(/\D/g,'');
+        if(typeof $scope.editOrder.client.searchString.split(" ")[0] != 'undefined') {
+            $scope.editOrder.client.firstName = $scope.editOrder.client.searchString.split(" ")[0].replace(/\d/g,'');
+        }
+        if(typeof $scope.editOrder.client.searchString.split(" ")[1] != 'undefined') {
+            $scope.editOrder.client.lastName = $scope.editOrder.client.searchString.split(" ")[1].replace(/\d/g,'');
+        }
 
+    };
 
 
 
