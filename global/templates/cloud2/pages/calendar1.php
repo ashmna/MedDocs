@@ -114,3 +114,8 @@
 
 
 </div>
+<style>
+.ui-autocomplete {
+    z-index: 1041;
+}
+</style>
