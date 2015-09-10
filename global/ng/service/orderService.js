@@ -13,4 +13,12 @@ app.service('orderService', ['serverConnector', function (serverConnector) {
         });
     };
 
+    this.findClients = function(client) {
+        return serverConnector.send({
+            method: 'GET',
+            url   : url('find-clients'),
+            params: {client:client}
+        });
+    }
+
 }]);

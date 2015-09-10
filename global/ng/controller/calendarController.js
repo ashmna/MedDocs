@@ -96,46 +96,18 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
     };
 
     $scope.initAutocomplete = function() {
-        var availableTags = [
-            "ActionScript",
-            "AppleScript",
-            "Asp",
-            "BASIC",
-            "C",
-            "C++",
-            "Clojure",
-            "COBOL",
-            "ColdFusion",
-            "Erlang",
-            "Fortran",
-            "Groovy",
-            "Haskell",
-            "Java",
-            "JavaScript",
-            "Lisp",
-            "Perl",
-            "PHP",
-            "Python",
-            "Ruby",
-            "Scala",
-            "Scheme"
-        ];
         var autocomplete = $('#search-client').autocomplete({
             source: function( request, response ) {
-               /* request.term
-                $.ajax({
-                    url: "http://gd.geobytes.com/AutoCompleteCity",
-                    dataType: "jsonp",
-                    data: {
-                        q: request.term
-                    },
-                    success: function( data ) {
-                        response( data );
+                orderService.findClients($scope.editOrder.client).success(function(data){
+                    if(data.status) {
+                        response(data.result);
                     }
-                });*/
+                }). error(function(){
+                    response([]);
+                });
 
-                console.log('source');
-
+                //test
+                //TODO: DELETE
                 response(
                     [
                         "AppleScript",
@@ -162,17 +134,17 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
                     ]
                 );
             },
-            minLength: 1,
+            minLength: 0,
             select: function( event, ui ) {
                 //log( ui.item ?
                 //"Selected: " + ui.item.label :
                 //"Nothing selected, input was " + this.value);
             },
             open: function() {
-                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                $(this).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
             },
             close: function() {
-                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                $(this).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
             }
         });
             //;
@@ -199,14 +171,26 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
         //    </li>').appendTo( ul );
         //};
     };
-    $scope.validateSearchString = function() {
-        $scope.editOrder.client.phone = $scope.editOrder.client.searchString.replace(/\D/g,'');
-        if(typeof $scope.editOrder.client.searchString.split(" ")[0] != 'undefined') {
-            $scope.editOrder.client.firstName = $scope.editOrder.client.searchString.split(" ")[0].replace(/\d/g,'');
+
+    $scope.parsSearchString = function() {
+        var arr, phone = [], lastName = [], firstName, str, i=0;
+        str = $scope.editOrder.client.searchString.replace(/\s+/g, ' ');
+        arr = str.split(" ");
+        for(; i<arr.length; ++i) {
+            if(arr[i].match(/\d+/g)) {
+                phone.push(arr[i]);
+            } else {
+                if(firstName) {
+                    lastName.push(arr[i]);
+                } else {
+                    firstName = arr[i]
+                }
+            }
         }
-        if(typeof $scope.editOrder.client.searchString.split(" ")[1] != 'undefined') {
-            $scope.editOrder.client.lastName = $scope.editOrder.client.searchString.split(" ")[1].replace(/\d/g,'');
-        }
+
+        $scope.editOrder.client.firstName = firstName;
+        $scope.editOrder.client.lastName = lastName.join(' ');
+        $scope.editOrder.client.phone = phone.join(' ');
 
     };
 

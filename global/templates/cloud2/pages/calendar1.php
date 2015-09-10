@@ -83,7 +83,7 @@
                         <div class="col-xs-12 form-group">
                             <input id="search-client" type="text" class="form-control" ng-init="initAutocomplete()"
                                    placeholder="<?= _('John Smith +123456789') ?>"
-                                   ng-model="editOrder.client.searchString" ng-change="validateSearchString()">
+                                   ng-model="editOrder.client.searchString" ng-change="parsSearchString()">
                         </div>
                     </div>
 
