@@ -36,11 +36,11 @@
                     <div class="row">
                         <div class="col-sm-6 col-xs-12 form-group">
                             <label for="start-time"><?= _('Start Time') ?></label>
-                            <input id="start-time" type="text" class="form-control" placeholder="<?= _('Start Time') ?>" ng-model="editOrder.start">
+                            <input id="start-time" type="text" placeholder="<?= _('Start Time') ?>" ng-model="editOrder.start" perfect-time-input>
                         </div>
                         <div class="col-sm-6 col-xs-12 form-group">
                             <label for="end-time"><?= _('End Time') ?></label>
-                            <input id="end-time" type="text" class="form-control" placeholder="<?= _('End Time') ?>" ng-model="editOrder.end">
+                            <input id="end-time" type="text" placeholder="<?= _('End Time') ?>" ng-model="editOrder.end" perfect-time-input>
                         </div>
                     </div>
                     <hr>

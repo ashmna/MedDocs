@@ -55,11 +55,11 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
 
         select: function(start, end) {
             $scope.editOrder = {
-                start : start,
-                end   : end,
+                start : start.format('HH:mm'),
+                end   : end.format('HH:mm'),
                 client:{}
             };
-            $scope.openPopup(event);
+            $scope.openPopup();
 
             getCalendar().fullCalendar('unselect');
             //getCalendar().fullCalendar('renderEvent', eventData, true); // stick? = true

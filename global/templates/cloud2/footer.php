@@ -54,11 +54,14 @@ if(App::isLoggedUser()) { ?>
 <script src="/global/js/custom.js"></script>
 <script src="/global/js/custom-index.js"></script>
 
+<script src="/global/ng/app.js"></script>
 
+<?php } else { ?>
+
+<script src="/global/ng/login.js"></script>
 <?php } ?>
 
 <!-- angular -->
-<script src="/global/ng/app.js"></script>
 <script src="/global/ng/factory/serverConnector.js"></script>
 <script src="/global/ng/factory/notification.js"></script>
 
@@ -77,7 +80,7 @@ if(App::isLoggedUser()) { ?>
 <!-- angular directives -->
 <script src="/global/ng/directives/perfectUploader.js"></script>
 <script src="/global/ng/directives/perfectDatepicker.js"></script>
-
+<script src="/global/ng/directives/perfectTimeInput.js"></script>
 
 </body>
 </html>
