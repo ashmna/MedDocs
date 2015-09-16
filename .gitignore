@@ -3,5 +3,6 @@ vendor/
 composer.lock
 composer.phar
 global/bower_components/
+global/build/
 node_modules/
 skins/*/global

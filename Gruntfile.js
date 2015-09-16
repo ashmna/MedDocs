@@ -8,12 +8,23 @@ module.exports = function(grunt) {
             js: {
                 files: [
                     {
-                        src: [rootDir + '/ng/*.js', rootDir + '/ng/**/*.js'],
-                        dest: rootDir + '/ng/build/app.js'
+                        src: [
+                             rootDir + '/ng/app.js'
+                            ,rootDir + '/ng/directives/*.js'
+                            ,rootDir + '/ng/factory/*.js'
+                            ,rootDir + '/ng/service/*.js'
+                            ,rootDir + '/ng/controller/*.js'
+                        ],
+                        dest: rootDir + '/build/app.js'
                     },
                     {
-                        src: [rootDir + '/ng/*.js', rootDir + '/ng/**/*.js'],
-                        dest: rootDir + '/ng/build/login.js'
+                        src: [
+                             rootDir + '/ng/login.js'
+                            ,rootDir + '/ng/factory/*.js'
+                            ,rootDir + '/ng/controller/userController.js'
+                            ,rootDir + '/ng/service/userService.js'
+                        ],
+                        dest: rootDir + '/build/login.js'
                     }
                 ]
             }
@@ -37,12 +48,12 @@ module.exports = function(grunt) {
             js: {
                 files: [
                     {
-                        src: [rootDir + '/ng/build/app.js'],
-                        dest: rootDir + '/ng/build/app.min.js'
+                        src: [rootDir + '/build/app.js'],
+                        dest: rootDir + '/build/app.min.js'
                     },
                     {
-                        src: [rootDir + '/ng/build/login.js'],
-                        dest: rootDir + '/ng/build/login.min.js'
+                        src: [rootDir + '/build/login.js'],
+                        dest: rootDir + '/build/login.min.js'
                     }
                 ]
             }
