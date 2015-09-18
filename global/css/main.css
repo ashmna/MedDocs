@@ -2290,6 +2290,10 @@ input[type=radio], input[type=checkbox] {
   padding-left: 15px !important;
   padding-right: 15px !important;
 }
+.modal-padding {
+  padding-right: 17px !important;
+}
+
 
 .cursor-pointer {
     cursor: pointer;

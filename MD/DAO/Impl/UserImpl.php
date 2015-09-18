@@ -4,11 +4,12 @@
 namespace MD\DAO\Impl;
 
 
+use MD\Helpers\App;
+use MD\Helpers\Config;
+use MD\Helpers\Defines;
 use MD\Models\Client;
 use MD\Models\Doctor;
 use MD\Models\User;
-use MD\Helpers\Config;
-use MD\Helpers\Defines;
 
 class UserImpl implements \MD\DAO\User
 {
@@ -37,6 +38,10 @@ class UserImpl implements \MD\DAO\User
     public function createUser(array $userData)
     {
         $user = new User($userData);
+        if(empty($user->getUserName())) {
+            $user->setUserName('user'.App::getCounterNextIndex('user'));
+        }
+
         $userId = $this->db->insert('users', $user->toArray());
         switch ($user->getRole()) {
             case Defines::ROLE_CLIENT;
@@ -55,10 +60,14 @@ class UserImpl implements \MD\DAO\User
 
     public function getUsersList(array $filter = [])
     {
+        $tableName = 'users';
+
         $bind = [
             'partnerId' => Config::getInstance()->partnerId
         ];
+
         $where = ['partnerId =:partnerId'];
+
         foreach ($filter as $key => $val) {
             $likeVal = '%' . preg_replace('/\s+/', '%', trim($val)) . '%';
             switch ($key) {

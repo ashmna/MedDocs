@@ -52,7 +52,7 @@ CREATE TABLE `doctors` (
   `gender`         ENUM('Male', 'Female')
                    CHARACTER SET 'utf8'
                    COLLATE 'utf8_unicode_ci'
-                                NOT NULL,
+                                NULL,
   `email`          VARCHAR(75)  NULL,
   `phone`          VARCHAR(255) NULL,
   `birthDay`       DATE         NULL,
@@ -81,7 +81,7 @@ CREATE TABLE `clients` (
   `gender`          ENUM('Male', 'Female')
                     CHARACTER SET 'utf8'
                     COLLATE 'utf8_unicode_ci'
-                                 NOT NULL,
+                                 NULL,
   `email`           VARCHAR(75)  NULL,
   `phone`           VARCHAR(255) NULL,
   `birthDay`        DATE         NULL,
@@ -160,6 +160,8 @@ CREATE TABLE `counters` (
   COLLATE utf8_unicode_ci;
 
 INSERT INTO counters VALUES ('fileSystem', 0);
+INSERT INTO counters VALUES ('user', 0);
+
 
 DROP PROCEDURE IF EXISTS getCounterNextIndex;
 CREATE PROCEDURE getCounterNextIndex (IN `inCounterName` CHAR(50))

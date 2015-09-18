@@ -5,9 +5,11 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
     var getCalendar = function() {
         return uiCalendarConfig.calendars.doctor;
     };
+
     $scope.editOrder = {
         client:{}
     };
+    $scope.inputClient = {};
 
     $scope.eventSources = [
         {
@@ -82,57 +84,31 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
         var el = $('#order-modal');
         el.modal('show');
 
-        el.css({paddingRight:'17px'});
-        $('body').css({paddingRight:'17px'});
+        el.addClass('modal-padding');
+        $('body').addClass('modal-padding');
     };
 
     $scope.closePopup = function() {
         var el = $('#order-modal');
-        el.css({paddingRight:'0px'});
 
+        el.on('hidden.bs.modal', function(){
+            el.removeClass('modal-padding');
+            $('body').removeClass('modal-padding');
+        });
         el.modal('hide');
-        $('body').css({paddingRight:'0px'});
 
     };
 
     $scope.initAutocomplete = function() {
         var autocomplete = $('#search-client').autocomplete({
             source: function( request, response ) {
-                orderService.findClients($scope.editOrder.client).success(function(data){
+                orderService.findClients($scope.inputClient).success(function(data){
                     if(data.status) {
                         response(data.result);
                     }
                 }). error(function(){
                     response([]);
                 });
-
-                //test
-                //TODO: DELETE
-                response(
-                    [
-                        "AppleScript",
-                        "Asp"        ,
-                        "BASIC"      ,
-                        "C"          ,
-                        "C++"        ,
-                        "Clojure"    ,
-                        "COBOL"      ,
-                        "ColdFusion" ,
-                        "Erlang"     ,
-                        "Fortran"    ,
-                        "Groovy"     ,
-                        "Haskell"    ,
-                        "Java"       ,
-                        "JavaScript" ,
-                        "Lisp"       ,
-                        "Perl"       ,
-                        "PHP"        ,
-                        "Python"     ,
-                        "Ruby"       ,
-                        "Scala"      ,
-                        "Scheme"
-                    ]
-                );
             },
             minLength: 0,
             select: function( event, ui ) {
@@ -191,6 +167,10 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
         $scope.editOrder.client.firstName = firstName;
         $scope.editOrder.client.lastName = lastName.join(' ');
         $scope.editOrder.client.phone = phone.join(' ');
+
+        $scope.inputClient.firstName = $scope.editOrder.client.firstName;
+        $scope.inputClient.lastName  = $scope.editOrder.client.lastName;
+        $scope.inputClient.phone     = $scope.editOrder.client.phone;
 
     };
 

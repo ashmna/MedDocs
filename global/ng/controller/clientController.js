@@ -8,8 +8,11 @@ function ($scope, userServices) {
     $scope.addNewOpen = false;
     $scope.updateUserInfo = false;
 
+    $scope.clientsList = [];
+
     $scope.register = function () {
         console.log($scope.clientInfo);
+
         userServices.register($scope.registerInfo)
             .success(function (data) {
                 if (data.result) {
@@ -20,26 +23,27 @@ function ($scope, userServices) {
             });
     };
 
-    $scope.getClientsList = function () {
+    $scope.slideForm = function () {
+        $scope.addNewOpen = !$scope.addNewOpen;
 
-        userServices.getUsersList($scope.filter)
-            .success(function (data) {
-                if (data.result) {
-                    //window.location.reload();
-                } else {
-                    // TODO: ALERT
+        $('#clientRegistrationForm').slideToggle()
+    };
+
+    $scope.getClientsList = function() {
+        userServices.getUsersList({role:'Client'})
+            .success(function(data){
+                if(data.status) {
+                    $scope.clientsList = data.result;
                 }
             });
     };
 
-    $scope.slideForm = function () {
-        if($scope.addNewOpen) {
-            $scope.addNewOpen = false;
-        } else {
-            $scope.addNewOpen = true;
-        }
+    $scope.changeClientData = function(client){
+        //TODO implement changeClientData method
+    };
 
-        $('#clientRegistrationForm').slideToggle()
-    }
+    $scope.deleteClient = function(client){
+        //TODO implement deleteClient method
+    };
 
 }]);

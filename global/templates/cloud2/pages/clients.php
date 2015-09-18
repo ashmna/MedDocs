@@ -95,14 +95,14 @@
 
 
     <!-- Row start -->
-    <div class="row no-gutter" ng-init="loadClientsList()">
+    <div class="row no-gutter" ng-init="getClientsList()">
         <div class="col-md-12 col-sm-12 col-sx-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4><?= _('Clients') ?></h4>
                     <ul class="links">
                         <li>
-                            <a href="#" ng-click="loadClientsList()">
+                            <a href="#" ng-click="getClientsList()">
                                 <i class="fa fa-refresh"></i>
                             </a>
                         </li>
