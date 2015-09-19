@@ -102,8 +102,11 @@
                     <h4><?= _('Clients') ?></h4>
                     <ul class="links">
                         <li>
-                            <a href="#" ng-click="getClientsList()">
+                            <a ng-hide="loading" ng-click="getClientsList()">
                                 <i class="fa fa-refresh"></i>
+                            </a>
+                            <a ng-show="loading" ng-click="getClientsList()">
+                                <i class="fa fa-spinner fa-spin"></i>
                             </a>
                         </li>
                     </ul>

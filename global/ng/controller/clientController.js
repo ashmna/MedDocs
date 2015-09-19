@@ -7,18 +7,18 @@ function ($scope, userServices) {
     };
     $scope.addNewOpen = false;
     $scope.updateUserInfo = false;
+    $scope.loading = false;
 
     $scope.clientsList = [];
 
     $scope.register = function () {
-        console.log($scope.clientInfo);
 
-        userServices.register($scope.registerInfo)
+        userServices.register($scope.clientInfo)
             .success(function (data) {
-                if (data.result) {
-                    //window.location.reload();
-                } else {
-                    // TODO: ALERT
+                if (data.status) {
+                    $scope.clientInfo = {};
+                    $scope.slideForm();
+                    $scope.getClientsList();
                 }
             });
     };
@@ -26,23 +26,28 @@ function ($scope, userServices) {
     $scope.slideForm = function () {
         $scope.addNewOpen = !$scope.addNewOpen;
 
-        $('#clientRegistrationForm').slideToggle()
+        $('#clientRegistrationForm').slideToggle();
     };
 
     $scope.getClientsList = function() {
+        $scope.loading = true;
         userServices.getUsersList({role:'Client'})
             .success(function(data){
                 if(data.status) {
                     $scope.clientsList = data.result;
                 }
+                $scope.loading = false;
+            })
+            .error(function(){
+                $scope.loading = false;
             });
     };
 
-    $scope.changeClientData = function(client){
+    $scope.changeClientData = function(client) {
         //TODO implement changeClientData method
     };
 
-    $scope.deleteClient = function(client){
+    $scope.deleteClient = function(client) {
         //TODO implement deleteClient method
     };
 

@@ -69,6 +69,9 @@ class UserImpl implements \MD\DAO\User
         $where = ['partnerId =:partnerId'];
 
         foreach ($filter as $key => $val) {
+            if(empty($val)) {
+                continue;
+            }
             $likeVal = '%' . preg_replace('/\s+/', '%', trim($val)) . '%';
             switch ($key) {
                 case 'username':
@@ -84,11 +87,28 @@ class UserImpl implements \MD\DAO\User
                             $tableName = 'clients';
                             break;
                     }
+                    break;
+                case 'firstName':
+                    $where[] = 'firstName LIKE :firstName';
+                    $bind['firstName'] = $likeVal;
+                    break;
+                case 'lastName':
+                    $where[] = 'lastName LIKE :lastName';
+                    $bind['lastName'] = $likeVal;
+                    break;
+                case 'phone':
+                    $where[] = 'phone LIKE :phone';
+                    $bind['phone'] = $likeVal;
+                    break;
             }
         }
 
         $where = implode(' AND ', $where);
         $users = $this->db->select($tableName, $where, $bind);
+
+        foreach($users as &$row) {
+            $row['showName'] = User::getShowName($row);
+        }
 
         return $users;
     }

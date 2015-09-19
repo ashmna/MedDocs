@@ -72,4 +72,14 @@ class User extends Model {
         return $randomString;
     }
 
+    public static function getShowName(array $user) {
+        //$user['gender'];
+
+        $firstName      = empty($user['firstName'])      ? '' : $user['firstName'];
+        $lastName       = empty($user['lastName'])       ? '' : $user['lastName'];
+        $patronymicName = empty($user['patronymicName']) ? '' : $user['patronymicName'];
+
+        return trim($firstName.' '.$lastName.' '.$patronymicName);
+    }
+
 }

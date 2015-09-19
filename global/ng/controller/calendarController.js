@@ -112,15 +112,29 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
             },
             minLength: 0,
             select: function( event, ui ) {
-                //log( ui.item ?
-                //"Selected: " + ui.item.label :
-                //"Nothing selected, input was " + this.value);
+                var item = angular.copy(ui.item);
+                $scope.editOrder.client.searchString = ui.item.showName +' '+ ui.item.phone;
+                $scope.editOrder.client = item;
+                $scope.inputClient = item;
+                $scope.$apply();
+            },
+            focus: function( event, ui ) {
+                $scope.editOrder.client = angular.copy(ui.item);
+                $scope.editOrder.client.searchString = ui.item.showName +' '+ ui.item.phone;
+                $scope.$apply();
             },
             open: function() {
                 $(this).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
             },
             close: function() {
+                $scope.editOrder.client = $scope.inputClient;
                 $(this).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+            },
+            response: function( event, ui ) {
+                var i = 0;
+                for(i; i< ui.content.length; ++i) {
+                    ui.content[i].label = item.showName + item.phone ? item.phone : '';
+                }
             }
         });
             //;
@@ -142,7 +156,7 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
 
         //autocomplete.autocomplete( "instance" )._renderItem = function(ul, item) {
         //    return $('<li>\
-        //        <a>'+ item.label +'\
+        //        <a>'+ item.showName +' '+ item.phone +'\
         //        </a>\
         //    </li>').appendTo( ul );
         //};
@@ -168,6 +182,7 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
         $scope.editOrder.client.lastName = lastName.join(' ');
         $scope.editOrder.client.phone = phone.join(' ');
 
+        $scope.inputClient = {};
         $scope.inputClient.firstName = $scope.editOrder.client.firstName;
         $scope.inputClient.lastName  = $scope.editOrder.client.lastName;
         $scope.inputClient.phone     = $scope.editOrder.client.phone;

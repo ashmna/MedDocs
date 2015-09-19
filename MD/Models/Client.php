@@ -4,6 +4,8 @@
 namespace MD\Models;
 
 
+use MD\Helpers\Defines;
+use MD\Helpers\FileSystem;
 use MD\Helpers\Model;
 
 class Client extends Model {
