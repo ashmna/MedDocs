@@ -9,4 +9,5 @@ interface UserService
     function logout();
     function register(array $userData);
     function getUsersList(array $filter);
+    function delete($userId);
 }

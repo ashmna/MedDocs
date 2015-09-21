@@ -55,5 +55,9 @@ class UserServiceImpl implements UserService {
         return $this->userDao->getUsersList($filter);
     }
 
+    public function delete($userId) {
+        return $this->userDao->deleteUserById($userId);
+    }
+
 
 }

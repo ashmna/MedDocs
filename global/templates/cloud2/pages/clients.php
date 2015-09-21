@@ -7,14 +7,15 @@
                     <h4><?= _('Client Details Form') ?></h4>
                     <ul class="links">
                         <li ng-click="slideForm()">
-                            <a href="#">
-                                <i ng-class="{'fa fa-minus-square-o' : addNewOpen, 'fa fa-plus-square-o' : !addNewOpen}"></i><span><?= _('Add new member') ?></span>
+                            <a class="cursor-pointer">
+                                <i ng-class="{'fa fa-minus-square-o' : formOpen, 'fa fa-plus-square-o' : !formOpen}"></i>
+                                <span><?= _('Add new member') ?></span>
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div class="panel-body" id="clientRegistrationForm">
-                    <form class="form-horizontal" role="form" ng-submit="register(form)">
+                    <form name="editForm" class="form-horizontal" role="form" novalidate>
                         <div class="row no-gutter">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
@@ -70,7 +71,7 @@
                                     <label class="col-sm-2 control-label"><?= ('Phone') ?></label>
 
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" placeholder="<?= ('Phone') ?>" ng-model="clientInfo.phone">
+                                        <input type="text" class="form-control" placeholder="<?= ('Phone') ?>" ng-model="clientInfo.phone">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -82,8 +83,9 @@
                                 </div>
                             </div>
                             <div class="right-align-text col-xs-12">
-                                <button type="submit" class="btn btn-success" ng-show="addNewOpen"><?=_('Register') ?></button>
-                                <button type="submit" class="btn btn-success" ng-show="updateUserInfo"><?=_('Update') ?></button>
+                                <button type="submit" class="btn btn-success" ng-click="addNewClient(editForm)" ng-hide="updateUserInfo"><?=_('Register') ?></button>
+                                <button type="submit" class="btn btn-default" ng-click="cancelEdit()" ng-show="updateUserInfo"><?=_('Cancel') ?></button>
+                                <button type="submit" class="btn btn-success" ng-click="changeClientData(editForm)" ng-show="updateUserInfo"><?=_('Update') ?></button>
                             </div>
                         </div>
                     </form>
@@ -102,17 +104,17 @@
                     <h4><?= _('Clients') ?></h4>
                     <ul class="links">
                         <li>
-                            <a ng-hide="loading" ng-click="getClientsList()">
+                            <a class="cursor-pointer" ng-hide="loading" ng-click="getClientsList()">
                                 <i class="fa fa-refresh"></i>
                             </a>
-                            <a ng-show="loading" ng-click="getClientsList()">
+                            <a class="cursor-pointer" ng-show="loading">
                                 <i class="fa fa-spinner fa-spin"></i>
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div class="panel-body">
-                    <div class="table-responsive">
+                    <div>
                         <table class="table table-condensed table-striped table-bordered table-hover no-margin">
                             <thead>
                             <tr>
@@ -142,10 +144,10 @@
                                         </button>
                                         <ul class="dropdown-menu pull-right">
                                             <li>
-                                                <a href="#" ng-click="changeClientData(client)"><?= _('Edit') ?></a>
+                                                <a class="cursor-pointer" ng-click="editClientData(client)"><?= _('Edit') ?></a>
                                             </li>
                                             <li>
-                                                <a href="#" ng-click="deleteClient(client)"><?= _('Delete') ?></a>
+                                                <a class="cursor-pointer" ng-click="deleteClient(client)"><?= _('Delete') ?></a>
                                             </li>
                                         </ul>
                                     </div>

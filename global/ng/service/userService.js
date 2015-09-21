@@ -34,4 +34,11 @@ app.service('userServices', ['serverConnector', function (serverConnector) {
         });
     };
 
+    this.deleteUser = function (userId) {
+        return serverConnector.send({
+            url : url('delete'),
+            data: {userId : userId}
+        });
+    };
+
 }]);

@@ -113,5 +113,28 @@ class UserImpl implements \MD\DAO\User
         return $users;
     }
 
+    function deleteUserById($userId)
+    {
+        $bind = [
+            'partnerId' => Config::getInstance()->partnerId,
+            'userId'    => $userId,
+        ];
+        $user = $this->db->select('users', 'partnerId = :partnerId AND userId = :userId', $bind);
+        if(count($user) == 1) {
+            $user = $user[0];
+            $userId = $user['userId'];
+            switch ($user['role']) {
+                case Defines::ROLE_DOCTOR:
+                    $this->db->delete('doctors', 'doctorId = :userId', ['userId' => $userId]);
+                    break;
+                case Defines::ROLE_CLIENT:
+                    $this->db->delete('clients', 'clientId = :userId', ['userId' => $userId]);
+                    break;
+            }
+            return $this->db->delete('users', 'userId = :userId', ['userId' => $userId]);
+        }
+        return false;
+    }
+
 
 }

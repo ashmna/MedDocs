@@ -104,7 +104,11 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
             source: function( request, response ) {
                 orderService.findClients($scope.inputClient).success(function(data){
                     if(data.status) {
-                        response(data.result);
+                        var res = data.result, i = 0;
+                        for(;i<res.length; ++i) {
+                            res[i].label = res[i].firstName +' '+ res[i].lastName +' '+ res[i].phone;
+                        }
+                        response(res);
                     }
                 }). error(function(){
                     response([]);
@@ -113,14 +117,13 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
             minLength: 0,
             select: function( event, ui ) {
                 var item = angular.copy(ui.item);
-                $scope.editOrder.client.searchString = ui.item.showName +' '+ ui.item.phone;
+                $scope.editOrder.searchString = length;
                 $scope.editOrder.client = item;
                 $scope.inputClient = item;
                 $scope.$apply();
             },
             focus: function( event, ui ) {
                 $scope.editOrder.client = angular.copy(ui.item);
-                $scope.editOrder.client.searchString = ui.item.showName +' '+ ui.item.phone;
                 $scope.$apply();
             },
             open: function() {
@@ -128,13 +131,8 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
             },
             close: function() {
                 $scope.editOrder.client = $scope.inputClient;
+                $scope.$apply();
                 $(this).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-            },
-            response: function( event, ui ) {
-                var i = 0;
-                for(i; i< ui.content.length; ++i) {
-                    ui.content[i].label = item.showName + item.phone ? item.phone : '';
-                }
             }
         });
             //;
@@ -164,7 +162,7 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
 
     $scope.parsSearchString = function() {
         var arr, phone = [], lastName = [], firstName, str, i=0;
-        str = $scope.editOrder.client.searchString.replace(/\s+/g, ' ');
+        str = $scope.editOrder.searchString.replace(/\s+/g, ' ');
         arr = str.split(" ");
         for(; i<arr.length; ++i) {
             if(arr[i].match(/\d+/g)) {
@@ -178,6 +176,7 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
             }
         }
 
+        $scope.editOrder.client = {};
         $scope.editOrder.client.firstName = firstName;
         $scope.editOrder.client.lastName = lastName.join(' ');
         $scope.editOrder.client.phone = phone.join(' ');
