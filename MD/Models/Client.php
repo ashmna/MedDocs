@@ -12,6 +12,7 @@ class Client extends Model {
     protected $partnerId;
     protected $userId;
 
+    protected $clientId;
     protected $avatar;
     protected $avatarUrl;
     protected $firstName;
@@ -26,6 +27,9 @@ class Client extends Model {
 
     public function setUserId($userId) {
         $this->userId = $userId;
+        if(empty($this->clientId)) {
+            $this->clientId = $this->userId;
+        }
     }
 
     public function setBirthDay($birthDay) {
@@ -49,6 +53,17 @@ class Client extends Model {
             $data['birthDay'] = $this->birthDay->format('Y-m-d');
         }
         return $data;
+    }
+
+    public function getClientId() {
+        return $this->clientId;
+    }
+
+    public function setClientId($clientId) {
+        $this->clientId = $clientId;
+        if(empty($this->userId)) {
+            $this->userId = $this->clientId;
+        }
     }
 
 }

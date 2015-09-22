@@ -49,7 +49,7 @@ if(App::isLoggedUser()) { ?>
 <script src="/global/bower_components/fullcalendar-scheduler/dist/scheduler.min.js"></script>
 <script src="/global/bower_components/angular-sweetalert/SweetAlert.min.js"></script>
 <script src="/global/bower_components/sweetalert/dist/sweetalert.min.js"></script>
-<script src="/global/bower_components/angular-st-pagination/angular-st-pagination.min.js"></script>
+<!--<script src="/global/bower_components/angular-st-pagination/angular-st-pagination.min.js"></script>-->
 
 <!-- Custom JS -->
 <script src="/global/js/custom.js"></script>

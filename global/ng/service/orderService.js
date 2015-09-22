@@ -18,6 +18,14 @@ app.service('orderService', ['serverConnector', function (serverConnector) {
             url  : url('find-clients'),
             data : {client:client}
         });
-    }
+    };
+
+    this.saveOrder = function(order) {
+        return serverConnector.send({
+            url  : url('save-order'),
+            data : {order:order}
+        });
+    };
+
 
 }]);

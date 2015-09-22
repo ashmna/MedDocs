@@ -66,7 +66,7 @@ class UserImpl implements \MD\DAO\User
             'partnerId' => Config::getInstance()->partnerId
         ];
 
-        $where = ['partnerId =:partnerId'];
+        $where = ['users.partnerId =:partnerId'];
 
         foreach ($filter as $key => $val) {
             if(empty($val)) {
@@ -81,10 +81,12 @@ class UserImpl implements \MD\DAO\User
                 case 'role':
                     switch ($val) {
                         case Defines::ROLE_DOCTOR:
-                            $tableName = 'doctors';
+                            $tableName = 'doctors, users';
+                            $where[] = 'doctorId = userId';
                             break;
                         case Defines::ROLE_CLIENT:
-                            $tableName = 'clients';
+                            $tableName = 'clients, users';
+                            $where[] = 'clientId = userId';
                             break;
                     }
                     break;

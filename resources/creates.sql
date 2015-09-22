@@ -1,6 +1,7 @@
 # CREATE SCHEMA `med_docs` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
 
 DROP TABLE IF EXISTS `workingTimes`;
+DROP TABLE IF EXISTS `orderTypes`;
 DROP TABLE IF EXISTS `orders`;
 
 DROP TABLE IF EXISTS `clients`;
@@ -120,13 +121,29 @@ CREATE TABLE `workingTimes` (
   DEFAULT CHARSET = utf8
   COLLATE utf8_unicode_ci;
 
+CREATE TABLE `orderTypes` (
+  `orderTypeId` INT(11)      NOT NULL AUTO_INCREMENT,
+  `name`        VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`orderTypeId`),
+  UNIQUE INDEX `orderTypeId_UNIQUE` (`orderTypeId` ASC)
+
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE utf8_unicode_ci;
 
 CREATE TABLE `orders` (
-  `partnerId`    INT(3)  NOT NULL DEFAULT 0,
-  `orderId`      INT(11) NOT NULL AUTO_INCREMENT,
-  `paretOrderId` INT(11) NOT NULL DEFAULT 0,
-  `clientId`     INT(11) NOT NULL,
-  `doctorId`     INT(11) NOT NULL,
+  `partnerId`     INT(3)   NOT NULL DEFAULT 0,
+  `orderId`       INT(11)  NOT NULL AUTO_INCREMENT,
+  `parentOrderId` INT(11)  NOT NULL DEFAULT 0,
+  `clientId`      INT(11)  NOT NULL,
+  `doctorId`      INT(11)  NOT NULL,
+  `start`         DATETIME NOT NULL,
+  `end`           DATETIME NOT NULL,
+  `orderTypeId`   INT(11)  NOT NULL,
+  `status`        CHAR(50) NOT NULL,
+  `description`   TEXT     NULL,
+
 
   PRIMARY KEY (`orderId`),
   UNIQUE INDEX `orderId_UNIQUE` (`orderId` ASC),
@@ -139,10 +156,13 @@ CREATE TABLE `orders` (
   FOREIGN KEY (`doctorId`)
   REFERENCES `doctors` (`doctorId`),
 
-  CONSTRAINT `fk_order_parentOrder`
-  FOREIGN KEY (`paretOrderId`)
-  REFERENCES `orders` (`orderId`)
+  CONSTRAINT `fk_order_orderType`
+  FOREIGN KEY (`orderTypeId`)
+  REFERENCES `orderTypes` (`orderTypeId`),
 
+  CONSTRAINT `fk_order_parentOrder`
+  FOREIGN KEY (`parentOrderId`)
+  REFERENCES `orders` (`orderId`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
@@ -161,11 +181,16 @@ CREATE TABLE `counters` (
 
 INSERT INTO counters VALUES ('fileSystem', 0);
 INSERT INTO counters VALUES ('user', 0);
+INSERT INTO orderTypes VALUES (1, 'type 1'), (2, 'type 2');
 
 
 DROP PROCEDURE IF EXISTS getCounterNextIndex;
-CREATE PROCEDURE getCounterNextIndex (IN `inCounterName` CHAR(50))
-BEGIN
-  UPDATE counters SET lastIndex = lastIndex + 1 WHERE counterName = inCounterName;
-  SELECT lastIndex FROM counters WHERE counterName = inCounterName;
-END;
+CREATE PROCEDURE getCounterNextIndex(IN `inCounterName` CHAR(50))
+  BEGIN
+    UPDATE counters
+    SET lastIndex = lastIndex + 1
+    WHERE counterName = inCounterName;
+    SELECT lastIndex
+    FROM counters
+    WHERE counterName = inCounterName;
+  END;

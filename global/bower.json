@@ -4,10 +4,10 @@
     "jquery": "*",
     "jquery-ui": "*",
     "components-font-awesome" : "*",
-    "angular": "1.4.5",
-    "angular-ui-calendar": "*",
-    "fullcalendar-scheduler": "1.0.0",
+    "angular": "^*",
+    "angular-ui-calendar": "^*",
+    "fullcalendar-scheduler": "^*",
     "angular-sweetalert": "latest",
-    "angular-smart-table" : "*"
+    "angular-smart-table" : "^*"
   }
 }

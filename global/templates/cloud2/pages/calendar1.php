@@ -36,11 +36,11 @@
                     <div class="row">
                         <div class="col-sm-6 col-xs-12 form-group">
                             <label for="start-time"><?= _('Start Time') ?></label>
-                            <input id="start-time" type="text" placeholder="<?= _('Start Time') ?>" ng-model="editOrder.start" perfect-time-input>
+                            <input id="start-time" type="text" placeholder="<?= _('Start Time') ?>" ng-model="editOrder.startTime" perfect-time-input>
                         </div>
                         <div class="col-sm-6 col-xs-12 form-group">
                             <label for="end-time"><?= _('End Time') ?></label>
-                            <input id="end-time" type="text" placeholder="<?= _('End Time') ?>" ng-model="editOrder.end" perfect-time-input>
+                            <input id="end-time" type="text" placeholder="<?= _('End Time') ?>" ng-model="editOrder.endTime" perfect-time-input>
                         </div>
                     </div>
                     <hr>
@@ -75,7 +75,7 @@
                                 <dd ng-bind="editOrder.client.email || '...'"></dd>
 
                                 <dt><?= _('Username') ?></dt>
-                                <dd ng-bind="editOrder.client.username || '...'"></dd>
+                                <dd ng-bind="editOrder.client.userName || '...'"></dd>
 
                             </dl>
                         </div>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" ng-click="closePopup()">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveOrder()">Save changes</button>
                 </div>
 
             </div><!-- /.modal-content -->

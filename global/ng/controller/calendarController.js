@@ -57,8 +57,8 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
 
         select: function(start, end) {
             $scope.editOrder = {
-                start : start.format('HH:mm'),
-                end   : end.format('HH:mm'),
+                startTime : start.format('HH:mm'),
+                endTime   : end.format('HH:mm'),
                 client:{}
             };
             $scope.openPopup();
@@ -76,6 +76,16 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
             //getCalendar().fullCalendar('unselect');
             //TeamCalendar.fullCalendar('unselect');
         }
+    };
+
+    $scope.saveOrder = function () {
+        orderService.saveOrder($scope.editOrder)
+        .success(function(data){
+            if(data.status) {
+                $scope.closePopup();
+                getCalendar().fullCalendar('renderEvent', data.result, true);
+            }
+        });
     };
 
 
@@ -100,7 +110,7 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
     };
 
     $scope.initAutocomplete = function() {
-        var autocomplete = $('#search-client').autocomplete({
+        $('#search-client').autocomplete({
             source: function( request, response ) {
                 orderService.findClients($scope.inputClient).success(function(data){
                     if(data.status) {
