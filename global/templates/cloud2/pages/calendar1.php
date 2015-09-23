@@ -37,12 +37,10 @@
                         <div class="col-sm-6 col-xs-12 form-group">
                             <label for="start-time"><?= _('Start Time') ?></label>
                             <input id="start-time" type="text" placeholder="<?= _('Start Time') ?>" perfect-time-input="editOrder.start">
-                            {{editOrder.start}}
                         </div>
                         <div class="col-sm-6 col-xs-12 form-group">
                             <label for="end-time"><?= _('End Time') ?></label>
                             <input id="end-time" type="text" placeholder="<?= _('End Time') ?>" perfect-time-input="editOrder.end">
-                            {{editOrder.end}}
                         </div>
                     </div>
                     <hr>
@@ -91,11 +89,21 @@
 
                     <div class="row">
                         <div class="col-xs-12 form-group">
+                            <label for="order-type"><?= _('Order Type') ?></label>
+                            <select id="order-type" ng-model="editOrder.orderTypeId" class="form-control">
+                                <?php foreach(\MD\Helpers\App::getOrderTypes() as $row) { ?>
+                                    <option value="<?= $row['orderTypeId'] ?>"><?= _($row['name']) ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+
+                        <div class="col-xs-12 form-group">
                             <label for="order-description"><?= _('Description') ?></label>
                             <textarea id="order-description" class="form-control" rows="3"
                                       style="resize: none" placeholder=""
                                       ng-model="editOrder.description"></textarea>
                         </div>
+
                     </div>
 
 

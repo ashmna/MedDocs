@@ -16,7 +16,12 @@ class OrderServiceImpl implements OrderService
      * @Inject
      * @var \MD\DAO\User
      */
-    protected $user;
+    protected $userDao;
+    /**
+     * @Inject
+     * @var \MD\DAO\Order
+     */
+    protected $orderDao;
 
     public function getOrdersFromMonth($year, $month) {
         // TODO: Implement getOrdersFromMonth() method.
@@ -25,16 +30,28 @@ class OrderServiceImpl implements OrderService
     public function findClients(Client $client) {
         $filter = $client->toArray();
         $filter['role'] = Defines::ROLE_CLIENT;
-        return $this->user->getUsersList($filter);
+        return $this->userDao->getUsersList($filter);
 
     }
 
     public function saveOrder(Order $order) {
-        return [
-            'start' => date('Y-m-d H:00:00'),
-            'end'   => date('Y-m-d H:59:59'),
-            'title' => 'Type 1',
-        ];
+        /** @var Client $client */
+        $client = $order->getClient();
+        if(empty($client->getClientId())) {
+            $clientData = $client->toArray();
+            $clientData['role'] = Defines::ROLE_CLIENT;
+            $clientId = $this->userDao->createUser($clientData);
+            $order->setClientId($clientId);
+        }
+
+        if(empty($order->getOrderId())) {
+            $orderId = $this->orderDao->crateOrder($order);
+            $order->setOrderId($orderId);
+        } else {
+            $this->orderDao->editOrder($order);
+        }
+
+        return $order->toArray();
     }
 
 

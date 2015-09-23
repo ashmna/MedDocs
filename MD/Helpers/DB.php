@@ -210,7 +210,8 @@ class DB {
             $bind[":$field"] = $info[$field];
         }
 
-        return $this->run($sql, $bind);
+        $this->run($sql, $bind);
+        return $this->getLastInsertId();
     }
 
 

@@ -158,11 +158,11 @@ CREATE TABLE `orders` (
 
   CONSTRAINT `fk_order_orderType`
   FOREIGN KEY (`orderTypeId`)
-  REFERENCES `orderTypes` (`orderTypeId`),
-
+  REFERENCES `orderTypes` (`orderTypeId`)
+/*
   CONSTRAINT `fk_order_parentOrder`
   FOREIGN KEY (`parentOrderId`)
-  REFERENCES `orders` (`orderId`)
+  REFERENCES `orders` (`orderId`)*/
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8

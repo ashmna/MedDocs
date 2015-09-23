@@ -259,4 +259,11 @@ class App {
 //        return array_search($name, $dictionaryKeys);
     }
 
+    public static function getOrderTypes() {
+        $app = self::getInstance();
+        /** @var \MD\DAO\Order $orderDao */
+        $orderDao = $app->container->get('MD\DAO\Order');
+        return $orderDao->getOrderTypes();
+    }
+
 }
