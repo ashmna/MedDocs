@@ -1,45 +1,67 @@
 app.directive('perfectTimeInput', ['$parse', function ($parse) {
-    return {
-        link: function (scope, element, attrs) {
+    jQuery(function ($) {
+        if (!$.ui.timespinner) {
+            $.widget("ui.timespinner", $.ui.spinner, {
+                options: {
+                    // seconds
+                    step    : 60 * 1000,
+                    // hours
+                    page    : 60,
+                    // angular
+                    callBack: null,
+                    timestamp: 0
+                },
 
-            if(!$.ui.timespinner) {
-                $.widget( "ui.timespinner", $.ui.spinner, {
-                    options: {
-                        // seconds
-                        step: 60 * 1000,
-                        // hours
-                        page: 60,
-                        // angular
-                        callBack:null
-                    },
-
-                    _parse: function( value ) {
-                        if ( typeof value === "string" ) {
-                            // already a timestamp
-                            if ( Number( value ) == value ) {
-                                return Number( value );
-                            }
-                            return moment(value, "HH:mm").unix()*1000;
+                _parse: function (value) {
+                    if (typeof value === "string") {
+                        // already a timestamp
+                        if (value && Number(value) == value) {
+                            return Number(value);
                         }
-                        return value;
-                    },
+                        return this.options.timestamp;
+                    }
+                    return value;
+                },
 
-                    _format: function( value ) {
-                        value = moment(value).format("HH:mm");
-                        if(this.options.callBack) this.options.callBack(value);
-                        return value;
+                _format: function (value) {
+                    this.options.timestamp = value;
+                    value = moment(this.options.timestamp);
+                    if (this.options.callBack) this.options.callBack(value);
+                    return value.utc().format("HH:mm");
+                }
+            });
+        }
+    });
+
+    return {
+
+        link : function (scope, element, attr) {
+            jQuery(function ($) {
+                var el = $(element[0]), model;
+                el.timespinner({
+                    callBack : function(value) {
+                        $parse(attr.perfectTimeInput).assign(scope, value);
+                        scope.$apply();
                     }
                 });
-            }
+                el.focusout(function(){
+                    if(model)
+                        el.val(model.utc().format("HH:mm"));
+                });
 
-
-            jQuery(function () {
-                $(element[0]).timespinner({
-                    callBack : function(value){
-                        $parse(attrs.ngModel).assign(scope, value);
+                scope.$watch(attr.perfectTimeInput, function (value) {
+                    if(value) {
+                        model = value;
+                        el.val(value.utc().format("HH:mm"));
+                        el.timespinner('option', 'timestamp', value.unix()*1000);
                     }
                 });
             });
+
+
+
+
         }
+
     }
 }]);

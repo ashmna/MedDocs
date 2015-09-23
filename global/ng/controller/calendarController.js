@@ -57,8 +57,8 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
 
         select: function(start, end) {
             $scope.editOrder = {
-                startTime : start.format('HH:mm'),
-                endTime   : end.format('HH:mm'),
+                start : start,
+                end   : end,
                 client:{}
             };
             $scope.openPopup();
