@@ -55,7 +55,9 @@ class User extends Model {
     public function getUserName() {
         return $this->userName;
     }
-
+    public function getUserId() {
+        return $this->userId;
+    }
 
 
     protected static function genPassHash($pass) {

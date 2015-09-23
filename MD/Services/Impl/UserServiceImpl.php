@@ -45,9 +45,13 @@ class UserServiceImpl implements UserService {
     }
 
     public function register(array $userData) {
-        $userId = $this->userDao->createUser($userData);
-        Notification::success(3, '');
-        //TODO: Armen Notification text for success register user
+        if(!$userData['userId']) {
+            $userId = $this->userDao->createUser($userData);
+        } else {
+            return $this->userDao->updateUser($userData);
+        }
+
+        Notification::success(3, '_(Registered Successfully)');
         return $userId;
     }
 

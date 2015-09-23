@@ -7,6 +7,7 @@ namespace MD\DAO\Impl;
 use MD\Helpers\App;
 use MD\Helpers\Config;
 use MD\Helpers\Defines;
+use MD\Helpers\Notification;
 use MD\Models\Client;
 use MD\Models\Doctor;
 use MD\Models\User;
@@ -138,5 +139,30 @@ class UserImpl implements \MD\DAO\User
         return false;
     }
 
+    public function updateUser(array $userData)
+    {
+        $user = new User($userData);
+        $userId = $user->getUserId();
+        if(empty($userId)) {
+            return Notification::error('UserId is empty');
+        }
+        if(empty($user->getUserName())) {
+            $user->setUserName('user'.App::getCounterNextIndex('user'));
+        }
+
+        $userTableUpdate = $this->db->update('users', $user->toArray(), 'userId = :userId', ['userId' => $userId]);
+        if($userTableUpdate) {
+            switch ($user->getRole()) {
+                case Defines::ROLE_DOCTOR:
+                    $doctor = new User($userData);
+                    return $this->db->update('doctors', $doctor->toArray(), 'doctorId = :userId', ['userId' => $userId]);
+                case Defines::ROLE_CLIENT:
+                    $client = new User($userData);
+                    return $this->db->update('clients', $client->toArray(), 'clientId = :userId', ['userId' => $userId]);
+            }
+        }
+
+        return false;
+    }
 
 }
