@@ -9,7 +9,7 @@ use MD\Models\Order;
 
 interface OrderService
 {
-    function getOrdersFromMonth($year, $month);
+    function getEventsFromMonth($year, $month);
     function findClients(Client $client);
     function saveOrder(Order $order);
 }

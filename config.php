@@ -56,6 +56,10 @@ return [
         'playersCasinoBonus' => false,
     ],
 
+    'colors' => [
+        'workingTimes' => '#ff9f89'
+    ],
+
     'environment' => 'development',
     'timezone'    => 'Asia/Yerevan',
     'template'    => 'cloud2',

@@ -5,10 +5,10 @@ app.service('orderService', ['serverConnector', function (serverConnector) {
         return '/api/order/' + url + '/';
     }
 
-    this.getOrdersFromMonth = function (year, month) {
+    this.getEventsFromMonth = function (year, month) {
         return serverConnector.send({
             method: 'GET',
-            url   : url('get-orders-from-month'),
+            url   : url('get-events-from-month'),
             params: {year:year, month: month}
         });
     };

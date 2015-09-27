@@ -4,6 +4,7 @@
 namespace MD\Services\Impl;
 
 
+use MD\Helpers\Config;
 use MD\Helpers\Defines;
 use MD\Models\Client;
 use MD\Models\Order;
@@ -22,9 +23,22 @@ class OrderServiceImpl implements OrderService
      * @var \MD\DAO\Order
      */
     protected $orderDao;
+    /**
+     * @Inject
+     * @var \MD\DAO\WorkingTimes
+     */
+    protected $workingTimesDao;
 
-    public function getOrdersFromMonth($year, $month) {
-        // TODO: Implement getOrdersFromMonth() method.
+    public function getEventsFromMonth($year, $month) {
+        $events = [];
+
+        $workingTimes = self::convertWorkingTimesToEvents($this->workingTimesDao->getWorkingTimesByMonth(2, $year, $month));
+
+        $orderEvents = self::convertOrdersToEvents($this->orderDao->getOrdersByMonth(2, $year, $month));
+
+        $events = array_merge($events, $workingTimes, $orderEvents);
+
+        return $events;
     }
 
     public function findClients(Client $client) {
@@ -52,6 +66,34 @@ class OrderServiceImpl implements OrderService
         }
 
         return $order->toArray();
+    }
+
+    private static function convertWorkingTimesToEvents(array $workingTimes) {
+        $events = [];
+        $color = Config::getInstance()->grtColor('workingTimes');
+        foreach($workingTimes as $date => $rows) {
+            foreach($rows as $row) {
+                $events[] = [
+                    'start'     => $date.' '.$row['startTime'],
+                    'end'       => $date.' '.$row['endTime'],
+                    'rendering' => 'background',
+                    'color'     => $color,
+                ];
+            }
+        }
+        return $events;
+    }
+
+    private static function convertOrdersToEvents(array $orders) {
+        $events = [];
+        foreach($orders as $date => $row) {
+            $events[] = [
+                'start' => $row['start'],
+                'end'   => $row['end'],
+                'title' => $row['orderId'].'  '.$row['description'],
+            ];
+        }
+        return $events;
     }
 
 

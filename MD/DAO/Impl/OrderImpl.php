@@ -40,5 +40,22 @@ class OrderImpl implements \MD\DAO\Order
             ]);
     }
 
+    public function getOrdersByMonth($doctorId, $year, $month) {
+        $bind = [
+            'partnerId' => Config::getInstance()->partnerId,
+            'doctorId'  => $doctorId,
+            'year'      => $year,
+            'month'     => $month,
+        ];
+
+        $where = [
+            'partnerId = :partnerId',
+            'doctorId = :doctorId',
+            '((YEAR(orders.start) = :year AND MONTH(orders.start) = :month) OR (YEAR(orders.end) = :year AND MONTH(orders.end) = :month))',
+        ];
+
+        return $this->db->select('orders', implode(' AND ', $where), $bind);
+    }
+
 
 }

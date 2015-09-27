@@ -47,7 +47,7 @@ class Config {
     protected $languages = [];
     protected $languagesCode;
     protected $workingTimes = [];
-
+    protected $colors = [];
 
 
     /**
@@ -265,5 +265,13 @@ class Config {
 
     public function getWorkingTimes() {
         return $this->workingTimes;
+    }
+
+    public function grtColor($name) {
+        if(!empty($this->colors) && !empty($this->colors[$name])) {
+            return $this->colors[$name];
+        } else {
+            throw new ConfigurationException("Configuration colors['{$name}'] not found !!!");
+        }
     }
 }

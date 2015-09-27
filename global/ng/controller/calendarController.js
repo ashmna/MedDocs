@@ -78,6 +78,23 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
         }
     };
 
+    $scope.getCalendarEvents = function() {
+        var date = getCalendar() ? getCalendar().fullCalendar('getDate') : moment();
+        console.log(date);
+        $scope.loading = true;
+        orderService.getEventsFromMonth(date.format('YYYY'), date.format('MM'))
+            .success(function(data) {
+                $scope.loading = false;
+                if(data && data.status) {
+                    angular.merge($scope.eventSources, data.result);
+                    console.log(data.result);
+                }
+            })
+            .error(function() {
+                $scope.loading = false;
+            });
+    };
+
     $scope.saveOrder = function () {
         orderService.saveOrder($scope.editOrder)
         .success(function(data){
