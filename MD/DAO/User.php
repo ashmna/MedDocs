@@ -13,4 +13,5 @@ interface User {
     function createUser(array $userData);
     function getUsersList(array $filter=[]);
     function deleteUserById($userId);
+    function updateUser(array $userData);
 }

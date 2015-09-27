@@ -24,7 +24,7 @@
 
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" placeholder="<?= _('First Name') ?>"
-                                                       ng-model="registerInfo.firstName">
+                                                       ng-model="doctorInfo.firstName">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -32,7 +32,7 @@
 
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" placeholder="<?= _('Last Name') ?>"
-                                                       ng-model="registerInfo.lastName">
+                                                       ng-model="doctorInfo.lastName">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -41,12 +41,12 @@
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control"
                                                        placeholder="<?= _('Patronymic Name') ?>"
-                                                       ng-model="registerInfo.patronymicName">
+                                                       ng-model="doctorInfo.patronymicName">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <div ng-model="registerInfo.avatar" perfect-uploader-preview show-upload-button class="cursor-pointer">
+                                        <div ng-model="doctorInfo.avatar" perfect-uploader-preview show-upload-button class="cursor-pointer">
                                             <input type="file" name="avatar" style="display: none;">
                                             <a hred="#" class="thumbnail img-responsive col-sm-12 right-align-text">
                                                 <img alt="avatar" src="../../../img/admin1.png">
@@ -61,14 +61,14 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="<?= _('Username') ?>"
-                                               ng-model="registerInfo.userName">
+                                               ng-model="doctorInfo.userName">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><?= _('Gender') ?></label>
 
                                     <div class="col-sm-10">
-                                        <select class="form-control" ng-model="registerInfo.gender">
+                                        <select class="form-control" ng-model="doctorInfo.gender">
                                             <option value="Male"><?= _('Male') ?></option>
                                             <option value="Female"><?= _('Female') ?></option>
                                         </select>
@@ -78,7 +78,7 @@
                                     <label class="col-sm-2 control-label"><?= _('Specialization') ?></label>
 
                                     <div class="col-sm-10">
-                                        <select class="form-control" ng-model="registerInfo.specialization">
+                                        <select class="form-control" ng-model="doctorInfo.specialization">
                                             <option value="Audiologist"><?= _('Audiologist') ?></option>
                                             <option value="Allergist"><?= _('Allergist') ?></option>
                                             <option value="Anesthesiologist"><?= _('Anesthesiologist') ?></option>
@@ -118,7 +118,7 @@
                                     <label class="col-sm-2 control-label"><?= _('Birthday') ?></label>
 
                                     <div class="col-sm-10">
-                                        <div class="input-group date" ng-model="registerInfo.birthday" perfect-datepicker>
+                                        <div class="input-group date" ng-model="doctorInfo.birthday" perfect-datepicker>
                                             <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@
 
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control" placeholder="<?= ('Email') ?>"
-                                               ng-model="registerInfo.email">
+                                               ng-model="doctorInfo.email">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -136,7 +136,7 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="<?= ('Phone') ?>"
-                                               ng-model="registerInfo.phone">
+                                               ng-model="doctorInfo.phone">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -144,7 +144,7 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="<?= ('Address') ?>"
-                                               ng-model="registerInfo.address">
+                                               ng-model="doctorInfo.address">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -152,13 +152,16 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="<?= ('Zip code') ?>"
-                                               ng-model="registerInfo.zipCode">
+                                               ng-model="doctorInfo.zipCode">
                                     </div>
                                 </div>
                             </div>
                             <div class="right-align-text col-xs-12">
-                                <button type="submit" class="btn btn-success" ng-show="addNewOpen" ng-click="register()"><?=_('Register') ?></button>
-                                <button type="submit" class="btn btn-success" ng-show="updateUserInfo"><?=_('Update') ?></button>
+                                <div class="right-align-text col-xs-12">
+                                    <button type="submit" class="btn btn-success" ng-click="register()" ng-hide="updateUserInfo"><?=_('Register') ?></button>
+                                    <button type="submit" class="btn btn-default" ng-click="cancelEdit()" ng-show="updateUserInfo"><?=_('Cancel') ?></button>
+                                    <button type="submit" class="btn btn-success" ng-click="changeDoctorData()" ng-show="updateUserInfo"><?=_('Update') ?></button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -183,15 +186,36 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row end -->
+
+    <div class="row no-gutter" ng-init="getDoctorsList()">
+        <div class="col-md-12 col-sm-12 col-sx-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><?= _('Clients') ?></h4>
+                    <ul class="links">
+                        <li>
+                            <a class="cursor-pointer" ng-hide="loading" ng-click="getDoctorsList()">
+                                <i class="fa fa-refresh"></i>
+                            </a>
+                            <a class="cursor-pointer" ng-show="loading">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="panel-body">
-                    <div class="table-responsive">
+                    <div>
                         <table class="table table-condensed table-striped table-bordered table-hover no-margin">
                             <thead>
                             <tr>
                                 <th style="width:10%"><?= _('Image') ?></th>
                                 <th style="width:40%"><?= _('Name') ?></th>
-                                <th style="width:20%" class="hidden-xs"><?= _('Specialization') ?></th>
-                                <th style="width:10%" class="hidden-xs hidden-sm"><?= _('Date') ?></th>
+                                <th style="width:20%" class="hidden-xs"><?= _('Phone') ?></th>
+                                <th style="width:10%" class="hidden-xs hidden-sm"><?= _('Last visited date') ?></th>
                                 <th style="width:10%" class="hidden-xs hidden-sm"><?= _('Action') ?></th>
                             </tr>
                             </thead>
@@ -203,19 +227,8 @@
                                 <td>
                                     <span class="name" ng-bind="doctor.showName"></span>
                                 </td>
-                                <td class="hidden-xs">
-                                <span class="label"
-                                      ng-class="{
-                                        'label-default' : doctor.specialization == 1,
-                                        'label-info'    : doctor.specialization == 2,
-                                        'label-danger'  : doctor.specialization == 3,
-                                        'label-primary' : doctor.specialization == 4,
-                                        'label-success' : doctor.specialization == 5,
-                                        'label-warning' : doctor.specialization == 6
-                                      }"
-                                      ng-bind="doctor.specialization"></span>
-                                </td>
-                                <td class="hidden-xs hidden-sm" ng-bind="doctor.date"></td>
+                                <td class="hidden-xs" ng-bind="doctor.phone"></td>
+                                <td class="hidden-xs hidden-sm" ng-bind="doctor.lastVisitedDate"></td>
                                 <td class="hidden-xs hidden-sm">
                                     <div class="btn-group">
                                         <button data-toggle="dropdown" class="btn btn-xs dropdown-toggle">
@@ -225,10 +238,10 @@
                                         </button>
                                         <ul class="dropdown-menu pull-right">
                                             <li>
-                                                <a href="#" ng-click="changeDoctorData(doctor)"><?= _('Edit') ?></a>
+                                                <a class="cursor-pointer" ng-click="editDoctorData(doctor)"><?= _('Edit') ?></a>
                                             </li>
                                             <li>
-                                                <a href="#" ng-click="deleteDoctor(doctor)"><?= _('Delete') ?></a>
+                                                <a class="cursor-pointer" ng-click="deleteDoctor(doctor)"><?= _('Delete') ?></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -241,5 +254,4 @@
             </div>
         </div>
     </div>
-    <!-- Row end -->
 </div>
