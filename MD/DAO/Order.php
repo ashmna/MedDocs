@@ -11,5 +11,6 @@ interface Order
     function editOrder(\MD\Models\Order $order);
     function deleteOrder($orderId);
     function getOrdersByMonth($doctorId, $year, $month);
+    function updateOrderDates($orderId, \DateTime $start, \DateTime $end);
 
 }

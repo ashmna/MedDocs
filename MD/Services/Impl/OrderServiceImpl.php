@@ -68,6 +68,15 @@ class OrderServiceImpl implements OrderService
         return $order->toArray();
     }
 
+    public function updateOrderDates($orderId, \DateTime $start, \DateTime $end) {
+        $this->orderDao->updateOrderDates($orderId, $start, $end);
+        return [
+            'start' => $start->format('Y-m-d H:i:s'),
+            'end'   => $end->format('Y-m-d H:i:s'),
+        ];
+    }
+
+
     private static function convertWorkingTimesToEvents(array $workingTimes) {
         $events = [];
         $color = Config::getInstance()->grtColor('workingTimes');
@@ -88,9 +97,10 @@ class OrderServiceImpl implements OrderService
         $events = [];
         foreach($orders as $date => $row) {
             $events[] = [
-                'start' => $row['start'],
-                'end'   => $row['end'],
-                'title' => $row['orderId'].'  '.$row['description'],
+                'orderId' => $row['orderId'],
+                'start'   => $row['start'],
+                'end'     => $row['end'],
+                'title'   => $row['orderId'].'  '.$row['description'],
             ];
         }
         return $events;

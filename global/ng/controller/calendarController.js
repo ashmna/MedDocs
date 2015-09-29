@@ -1,37 +1,20 @@
-app.controller('calendarController', ['$scope', 'uiCalendarConfig', 'orderService', 'SweetAlert',
-function ($scope, uiCalendarConfig, orderService, SweetAlert) {
+app.controller('calendarController', ['$scope', 'orderService', 'SweetAlert',
+function ($scope, orderService, SweetAlert) {
     'use strict';
 
-    var getCalendar = function() {
-        return uiCalendarConfig.calendars.doctor;
-    };
+    var loadedMonthsData = {},
+        calendar,
+        getCalendar = function() {
+            return calendar;
+        };
+
 
     $scope.editOrder = {
         client:{}
     };
     $scope.inputClient = {};
+    $scope.eventSources = [];
 
-    $scope.eventSources = [
-        {
-            start: '2015-09-07 00:00:00',
-            end: '2015-09-07 10:00:00',
-            rendering: 'background',
-            color: '#ff9f89'
-        },
-        {
-            start: '2015-09-07 14:00:00',
-            end: '2015-09-07 15:00:00',
-            rendering: 'background',
-            color: '#ff9f89'
-        },
-        {
-            start: '2015-09-07 19:00:00',
-            end: '2015-09-07 24:00:00',
-            rendering: 'background',
-            color: '#ff9f89'
-        }
-    ];
-    /* config object */
     $scope.config = {
         defaultView: 'agendaDay',
         allDaySlot: false,
@@ -47,14 +30,17 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
             center: 'title',
             right : 'month,agendaWeek,agendaDay'
         },
-        dayClick: function(){console.log('dayClick', arguments)},
-        eventDrop: function(){console.log('eventDrop', arguments)},
-        eventResize: function(){console.log('eventResize', arguments)},
+        dayClick:    function(event) {console.log('dayClick', arguments)},
+        eventDrop:   function(event) { $scope.updateOrder(event); },
+        eventResize: function(event) { $scope.updateOrder(event); },
         selectable: true,
         selectHelper: false,
 
         events: $scope.eventSources,
-
+        viewRender : function(view) {
+            $scope.getCalendarEvents(view.start);
+            $scope.getCalendarEvents(view.end);
+        },
         select: function(start, end) {
             $scope.editOrder = {
                 start : start,
@@ -77,22 +63,35 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
             //TeamCalendar.fullCalendar('unselect');
         }
     };
+    $scope.initCalendar = function(){
+        $(document).ready(function() {
+            calendar = $('#worker-calendar');
+            calendar.fullCalendar($scope.config);
+        });
+    };
 
-    $scope.getCalendarEvents = function() {
-        var date = getCalendar() ? getCalendar().fullCalendar('getDate') : moment();
-        console.log(date);
+    $scope.getCalendarEvents = function(date) {
+        date = date.utc();
+        //date = getCalendar() ? getCalendar().fullCalendar('getDate') : moment(date);
+        var key = date.format('YYYY')+ '-'+date.format('MM');
+        if(loadedMonthsData[key]) return;
+        loadedMonthsData[key] = true;
+
         $scope.loading = true;
         orderService.getEventsFromMonth(date.format('YYYY'), date.format('MM'))
             .success(function(data) {
-                $scope.loading = false;
                 if(data && data.status) {
-                    angular.merge($scope.eventSources, data.result);
-                    console.log(data.result);
+                    $scope.eventSources = $scope.eventSources.concat(data.result);
+                    getCalendar().fullCalendar('removeEvents');
+                    getCalendar().fullCalendar('addEventSource', $scope.eventSources );
                 }
+                $scope.loading = false;
             })
             .error(function() {
                 $scope.loading = false;
             });
+
+        //getCalendar.fullCalendar('refresh');
     };
 
     $scope.saveOrder = function () {
@@ -100,9 +99,38 @@ function ($scope, uiCalendarConfig, orderService, SweetAlert) {
         .success(function(data){
             if(data.status) {
                 $scope.closePopup();
+                $scope.eventSources.push(data.result);
                 getCalendar().fullCalendar('renderEvent', data.result, true);
             }
         });
+    };
+
+    $scope.updateOrder = function(event) {
+        $scope.loading = true;
+
+
+        var order, i=0;
+        for(i=0; i<$scope.eventSources.length; ++i) {
+            if($scope.eventSources[i].orderId == event.orderId) {
+                order = $scope.eventSources[i];
+                break;
+            }
+        }
+
+        orderService.updateOrderDates(event.orderId, event.start, event.end)
+            .success(function(data) {
+                $scope.loading = false;
+                if(data.status) {
+                    order.start = data.result.start;
+                    order.end   = data.result.end;
+                }
+            })
+            .error(function() {
+                $scope.loading = false;
+
+                //TODO: Ashot cancel resizing
+            });
+
     };
 
 

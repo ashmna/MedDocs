@@ -4,7 +4,7 @@ return [
         'host' => 'localhost',
         'name' => 'med_docs',
         'user' => 'root',
-        'pass' => '1234',
+        'pass' => '',
     ],
 
     'definition' => [
@@ -57,7 +57,7 @@ return [
     ],
 
     'colors' => [
-        'workingTimes' => '#ff9f89'
+        'workingTimes' => '#a4db79' //        rgb(164, 219, 121)
     ],
 
     'environment' => 'development',

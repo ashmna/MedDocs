@@ -5,7 +5,7 @@
 
         <div class="col-md-9 col-sm-12">
 
-            <div ui-calendar="config" calendar="doctor" ng-model="eventSources" ng-init="getCalendarEvents()"></div>
+            <div id="worker-calendar" ng-init="initCalendar()"></div>
 
         </div>
 

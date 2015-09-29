@@ -27,5 +27,16 @@ app.service('orderService', ['serverConnector', function (serverConnector) {
         });
     };
 
+    this.updateOrderDates = function(orderId, start, end) {
+        return serverConnector.send({
+            url  : url('update-order-dates'),
+            data : {
+                orderId:orderId,
+                start:start.utc().format('YYYY-MM-DD HH:mm'),
+                end:end.utc().format('YYYY-MM-DD HH:mm')
+            }
+        });
+    }
+
 
 }]);

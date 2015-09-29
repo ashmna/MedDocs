@@ -57,5 +57,17 @@ class OrderImpl implements \MD\DAO\Order
         return $this->db->select('orders', implode(' AND ', $where), $bind);
     }
 
+    function updateOrderDates($orderId, \DateTime $start, \DateTime $end) {
+        $data = [
+            'start' => $start->format('Y-m-d H:i:s'),
+            'end'   => $end->format('Y-m-d H:i:s'),
+        ];
+        $bind = [
+            'partnerId' => Config::getInstance()->partnerId,
+            'orderId'   => $orderId,
+        ];
+        return $this->db->update('orders', $data, 'partnerId = :partnerId AND orderId = :orderId', $bind);
+    }
+
 
 }

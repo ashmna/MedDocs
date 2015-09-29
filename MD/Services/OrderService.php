@@ -12,4 +12,5 @@ interface OrderService
     function getEventsFromMonth($year, $month);
     function findClients(Client $client);
     function saveOrder(Order $order);
+    function updateOrderDates($orderId, \DateTime $start, \DateTime $end);
 }
