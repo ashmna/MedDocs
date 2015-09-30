@@ -45,6 +45,8 @@ class UserServiceImpl implements UserService {
     }
 
     public function register(array $userData) {
+        //$this->userDao->getUserByUsername($userData['username']);
+        //TODO: Ashot userData validation and insert/update payman karochi
         if(!$userData['userId']) {
             $userId = $this->userDao->createUser($userData);
         } else {

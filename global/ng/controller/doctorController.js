@@ -11,13 +11,16 @@ function ($scope, userServices, SweetAlert) {
     $scope.doctorsList = [];
 
     $scope.register = function () {
-
+        //$scope.isSubmitted = true;
         $scope.loading = true;
         userServices.register($scope.doctorInfo)
             .success(function (data) {
                 if (data.result) {
+                    $scope.doctorInfo = {role : 'Doctor'};
+                    SweetAlert.swal("Good job!", "You clicked the button!", "success");
                     $scope.getDoctorsList();
                     $scope.loading = false;
+                    $scope.slideForm();
                 } else {
                     alert('Registration fail');
                     $scope.loading = false;
@@ -41,7 +44,7 @@ function ($scope, userServices, SweetAlert) {
 
     $scope.slideForm = function () {
         $scope.formOpen = !$scope.formOpen;
-        $('#doctorRegistrationForm').slideToggle()
+        $('#doctorRegistrationForm').slideToggle();
     };
 
     $scope.editDoctorData = function(doctor) {
@@ -50,6 +53,12 @@ function ($scope, userServices, SweetAlert) {
         if(!$scope.formOpen) {
             $scope.slideForm();
         }
+    };
+
+    $scope.cancelEdit = function() {
+        $scope.updateUserInfo = false;
+        $scope.doctorInfo = { role : 'Doctor' };
+        $scope.slideForm();
     };
 
     $scope.deleteDoctor = function(doctor) {

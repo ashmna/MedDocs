@@ -14,25 +14,26 @@
                     </ul>
                 </div>
                 <div class="panel-body" id="doctorRegistrationForm">
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" role="form" name="doctorForm" novalidate>
                         <div class="row no-gutter">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="row no-gutter">
                                     <div class="col-md-8 col-sm-8 col-xs-12 cel-in-row">
-                                        <div class="form-group">
+                                        <div class="form-group" ng-class="{ 'has-error' : doctorForm.firstName.$invalid && doctorForm.$submitted}">
                                             <label class="col-sm-3 control-label"><?= _('First Name') ?></label>
 
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" placeholder="<?= _('First Name') ?>"
-                                                       ng-model="doctorInfo.firstName">
+                                                       ng-model="doctorInfo.firstName" name="firstName" minlength="3" required>
+                                                <p ng-show="doctorForm.firstName.$error.required && doctorForm.$submitted" class="help-block">First name is required.</p>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" ng-class="{ 'has-error' : doctorForm.lastName.$invalid && !doctorForm.lastName.$pristine }">
                                             <label class="col-sm-3 control-label"><?= _('Last Name') ?></label>
 
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" placeholder="<?= _('Last Name') ?>"
-                                                       ng-model="doctorInfo.lastName">
+                                                       ng-model="doctorInfo.lastName" name="lastName">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -158,8 +159,8 @@
                             </div>
                             <div class="right-align-text col-xs-12">
                                 <div class="right-align-text col-xs-12">
-                                    <button type="submit" class="btn btn-success" ng-click="register()" ng-hide="updateUserInfo"><?=_('Register') ?></button>
-                                    <button type="submit" class="btn btn-default" ng-click="cancelEdit()" ng-show="updateUserInfo"><?=_('Cancel') ?></button>
+                                    <button type="submit" class="btn btn-success" ng-click="register()" ng-hide="updateUserInfo" ng-disabled="!doctorForm.$valid"><?=_('Register') ?></button>
+                                    <button type="button" class="btn btn-default" ng-click="cancelEdit()" ng-show="updateUserInfo"><?=_('Cancel') ?></button>
                                     <button type="submit" class="btn btn-success" ng-click="changeDoctorData()" ng-show="updateUserInfo"><?=_('Update') ?></button>
                                 </div>
                             </div>
@@ -172,30 +173,11 @@
     <!-- Row end -->
 
 
-    <!-- Row start -->
-    <div class="row no-gutter" ng-init="loadDoctorsList()">
-        <div class="col-md-12 col-sm-12 col-sx-12">
-            <div class="panel panel-blue">
-                <div class="panel-heading">
-                    <h4><?= _('Doctors') ?></h4>
-                    <ul class="links">
-                        <li>
-                            <a href="#" ng-click="loadDoctorsList()">
-                                <i class="fa fa-refresh"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Row end -->
-
     <div class="row no-gutter" ng-init="getDoctorsList()">
         <div class="col-md-12 col-sm-12 col-sx-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4><?= _('Clients') ?></h4>
+                    <h4><?= _('Doctors') ?></h4>
                     <ul class="links">
                         <li>
                             <a class="cursor-pointer" ng-hide="loading" ng-click="getDoctorsList()">

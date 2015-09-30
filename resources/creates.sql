@@ -33,6 +33,7 @@ CREATE TABLE `users` (
                           NOT NULL DEFAULT 'Client',
   `passHash`  CHAR(64)    NOT NULL,
   `pass`      VARCHAR(45) NULL,
+  `enabled`   INT(1)      NOT NULL DEFAULT 1,
   PRIMARY KEY (`userId`),
   UNIQUE INDEX `userId_UNIQUE` (`userId` ASC),
   UNIQUE INDEX `userName_UNIQUE` (`partnerId`, `userName` ASC)
@@ -159,10 +160,10 @@ CREATE TABLE `orders` (
   CONSTRAINT `fk_order_orderType`
   FOREIGN KEY (`orderTypeId`)
   REFERENCES `orderTypes` (`orderTypeId`)
-/*
-  CONSTRAINT `fk_order_parentOrder`
-  FOREIGN KEY (`parentOrderId`)
-  REFERENCES `orders` (`orderId`)*/
+  /*
+    CONSTRAINT `fk_order_parentOrder`
+    FOREIGN KEY (`parentOrderId`)
+    REFERENCES `orders` (`orderId`)*/
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8

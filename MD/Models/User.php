@@ -16,6 +16,7 @@ class User extends Model {
     protected $role = Defines::ROLE_CLIENT;
     protected $passHash;
     protected $pass;
+    protected $enabled;
 
     public function __construct($data = []) {
         parent::__construct($data);
@@ -57,6 +58,9 @@ class User extends Model {
     }
     public function getUserId() {
         return $this->userId;
+    }
+    public function isEnabled() {
+        return $this->enabled == Defines::USER_ENABLED;
     }
 
 
