@@ -1,8 +1,8 @@
 # CREATE SCHEMA `med_docs` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
 
 DROP TABLE IF EXISTS `workingTimes`;
-DROP TABLE IF EXISTS `orderTypes`;
 DROP TABLE IF EXISTS `orders`;
+DROP TABLE IF EXISTS `orderTypes`;
 
 DROP TABLE IF EXISTS `clients`;
 DROP TABLE IF EXISTS `doctors`;
@@ -100,9 +100,9 @@ CREATE TABLE `clients` (
   COLLATE utf8_unicode_ci;
 
 
-INSERT INTO users VALUES (1, 1, 'admin', 'admin@meddocs.am', 'Admin', '', 'admin');
+INSERT INTO users VALUES (1, 1, 'admin', 'admin@meddocs.am', 'Admin', '', 'admin', 1);
 
-INSERT INTO users VALUES (1, 2, 'doctor', 'doctor@meddocs.am', 'Doctor', '', 'doctor');
+INSERT INTO users VALUES (1, 2, 'doctor', 'doctor@meddocs.am', 'Doctor', '', 'doctor', 1);
 INSERT INTO doctors (partnerId, doctorId) VALUES (1, 2);
 
 
