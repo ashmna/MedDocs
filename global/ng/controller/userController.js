@@ -1,5 +1,5 @@
-app.controller('userController', ['$scope', 'userServices',
-function ($scope, userServices) {
+app.controller('userController', ['$scope', 'userServices', 'SweetAlert',
+function ($scope, userServices, SweetAlert) {
     'use strict';
 
     $scope.userLogin = {};
@@ -12,17 +12,11 @@ function ($scope, userServices) {
             .success(function(data){
                 if(data.result) {
                     window.location.reload();
-                } else {
-                    // TODO: ALERT
-                }
-            });
-
-        userServices.register($scope.userInfo)
-            .success(function(data){
-                if(data.result) {
-                    window.location.reload();
-                } else {
-                    // TODO: ALERT
+                } else if(data.notification.length) {
+                    SweetAlert.swal({
+                        title: data.notification[0].title,
+                        text: data.notification[0].content
+                    });
                 }
             });
     };

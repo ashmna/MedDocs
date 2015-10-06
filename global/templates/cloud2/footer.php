@@ -58,6 +58,8 @@ if(App::isLoggedUser()) { ?>
 <script src="/global/ng/app.js"></script>
 
 <?php } else { ?>
+<script src="/global/bower_components/angular-sweetalert/SweetAlert.min.js"></script>
+<script src="/global/bower_components/sweetalert/dist/sweetalert.min.js"></script>
 
 <script src="/global/ng/login.js"></script>
 <?php } ?>

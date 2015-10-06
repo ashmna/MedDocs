@@ -12,11 +12,11 @@
     </div>
     <di id="inputs">
       <div class="form-control">
-        <input type="text" placeholder="<?= _('Username') ?>" ng-model="userLogin.username" required>
+        <input type="text" placeholder="<?= _('Username') ?>" ng-model="userLogin.username" required autofocus>
         <i class="fa fa-user-md"></i>
       </div>
       <div class="form-control">
-        <input type="password" placeholder="<?= _('Password') ?>" ng-model="userLogin.password" required>
+        <input type="password" placeholder="<?= _('Password') ?>" ng-model="userLogin.password" required autocomplete="off">
         <i class="fa fa-key"></i>
       </div>
       <input type="submit" value="<?= _('Sign In') ?>">

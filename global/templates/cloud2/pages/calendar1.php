@@ -1,11 +1,38 @@
 <div  ng-controller="calendarController">
 
+
+
+
     <!-- Row start -->
     <div class="row no-gutter">
+        <div class="col-md-12 col-sm-12 col-sx-12">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <h4>Calendar</h4>
+                    <ul class="links">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-area-chart"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <div id="worker-calendar" ng-init="initCalendar()"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row end -->
+
+
+
+    <!-- Row start -->
+   <!-- <div class="row no-gutter">
 
         <div class="col-md-9 col-sm-12">
 
-            <div id="worker-calendar" ng-init="initCalendar()"></div>
+
 
         </div>
 
@@ -14,7 +41,7 @@
 
         </div>
     </div>
-
+-->
 
 
     <!-- Modal -->
