@@ -4,7 +4,10 @@
   "minimum-stability": "dev",
   "license": "proprietary",
   "autoload": {
-    "psr-4": {"MD\\": "MD/"}
+    "psr-4": {
+      "MD\\": "MD/",
+      "MD\\Tests\\": "Tests/"
+    }
   },
   "repositories": [
     {
@@ -17,5 +20,8 @@
     "phpmailer/phpmailer": "v5.2.9",
     "phpoffice/phpexcel": "1.8.1",
     "dompdf/dompdf" : "0.6.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit" : "*"
   }
 }

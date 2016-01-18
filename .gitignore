@@ -1,7 +1,9 @@
 .idea/
+.vagrant/
 vendor/
 composer.lock
 composer.phar
+phpunit.phar
 global/bower_components/
 global/build/
 node_modules/

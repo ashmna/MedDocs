@@ -14,10 +14,10 @@ class Doctor extends Model {
 
     protected $avatar;
     protected $avatarUrl;
+
     protected $firstName;
     protected $lastName;
     protected $patronymicName;
-    protected $email;
     protected $phone;
     protected $gender = '';
     protected $birthDay;

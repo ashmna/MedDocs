@@ -1,5 +1,6 @@
 #!/bin/bash
 
+wget https://phar.phpunit.de/phpunit.phar
 php -r "readfile('https://getcomposer.org/installer');" | php
 php composer.phar install
 unlink ./skins/dev/global
